@@ -63,6 +63,42 @@ nên hệ thống lọc hồ sơ tự động (ATS) đọc được đầy đủ
 thứ tự đọc và nguyên dấu tiếng Việt. Bố cục một cột, không dùng bảng để dàn trang,
 không nhét chữ vào ảnh.
 
+## jobagent — đối chiếu tin tuyển dụng với hồ sơ
+
+`jobagent.py` nhận nội dung một tin tuyển dụng rồi trả lời ba câu: khớp bao nhiêu
+phần trăm, nên gửi bản CV nào, và **chỗ nào JD đòi mà hồ sơ chưa có bằng chứng** —
+đó chính là những câu sẽ bị hỏi khi phỏng vấn.
+
+```bash
+python jobagent.py add "LG CNS — Back-End (C#/.NET/SQL)" jd.txt
+python jobagent.py list
+python jobagent.py status 2 da-nop
+python jobagent.py report
+```
+
+```
+#    TIN                                          KHỚP  CV NÊN GỬI       TRẠNG THÁI
+1    JD fresher fullstack remote                   83%  Fresher-Remote   đã nộp
+2    LG CNS — Back-End (C#/.NET/SQL)               82%  NET-Backend      mới
+3    Viettel Solutions — Java Developer 2 năm+     73%  Java-Backend     mới
+```
+
+Điểm khác biệt so với việc đếm từ khoá: mỗi kỹ năng trong hồ sơ phải kèm **bằng
+chứng cụ thể** mới được tính. Kỹ năng không có dự án chứng minh sẽ nằm ở mục *hụt*
+chứ không được cộng điểm.
+
+```
+Khớp — có bằng chứng:
+   spring       REST API 32 endpoint, Caffeine cache, Actuator, springdoc
+   docker       Docker + compose tách dev/prod; image đa kiến trúc trên GHCR
+HỤT — JD đòi nhưng hồ sơ chưa có bằng chứng:
+   microservice chuẩn bị câu trả lời, hoặc bỏ qua tin này
+```
+
+Chỉ dùng thư viện chuẩn, chạy hoàn toàn cục bộ: không truy cập mạng, không đăng
+nhập vào trang tuyển dụng nào, không tự nộp hồ sơ. Việc nộp vẫn do người làm, từng
+tin một.
+
 ---
 
 Liên hệ: [github.com/nguyenquocanhz](https://github.com/nguyenquocanhz) ·
