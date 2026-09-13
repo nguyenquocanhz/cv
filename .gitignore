@@ -1,0 +1,8 @@
+# repo rieng, khong nhung vao day
+rapphim_mobile/
+
+# rac tam cua phien lam viec
+lanip.txt
+*.log
+__pycache__/
+RapPhimWareHouse-README.md
