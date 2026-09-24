@@ -119,6 +119,23 @@ EXP_REMOTE_VI = [
     EXP_VI[1],
 ]
 
+# Bản chuyển đổi số: kể kinh nghiệm theo góc tiếp nhận yêu cầu và duy trì sau bàn giao.
+EXP_CDS_VI = [
+    dict(title="Freelance Developer", org="— phát triển phần mềm theo yêu cầu khách hàng",
+         date="07/2023 – nay", bullets=[
+        f"Tiếp nhận yêu cầu từ khách hàng, chuyển thành đặc tả chức năng rồi trực tiếp phát triển và bàn giao; hệ thống phục vụ <b>{USERS} khách hàng</b> với <b>{ORDERS} đơn hàng</b> mỗi tháng.",
+        "<b>Duy trì hệ thống sau bàn giao</b>: tiếp nhận lỗi người dùng báo, phân loại mức độ ưu tiên và xử lý dứt điểm.",
+        "Xây dựng <b>hệ thống cấp phát dịch vụ tự động</b>, loại bỏ hoàn toàn thao tác thủ công; tích hợp cổng thanh toán với đối soát giao dịch realtime.",
+        f"Quản trị hạ tầng máy chủ nhiều vùng, uptime <b>{UPTIME}</b>; tự xử lý sự cố vận hành và khôi phục dịch vụ.",
+    ]),
+    dict(title="Technical Support Associate", org="— Công ty Cổ phần Máy tính Z1",
+         date="09/2025 – 10/2025", bullets=[
+        "Hỗ trợ người dùng nội bộ: chẩn đoán và xử lý sự cố <b>phần cứng, phần mềm, máy in và mạng</b>, giảm thời gian gián đoạn vận hành.",
+        "Vận hành hệ thống <b>POS KiotViet</b>; quản trị và tối ưu hiệu năng website công ty.",
+        "<b>Ứng dụng công cụ AI tự động hoá quy trình nội bộ</b>; sản xuất nội dung truyền thông và quản lý sản phẩm trên sàn thương mại điện tử.",
+    ]),
+]
+
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
     "Tối ưu hiệu năng bằng <b>Caffeine cache</b> giảm số lần gọi API ngoài; <b>Spring Actuator</b> cho health check; <b>Bean Validation</b> kiểm soát đầu vào; có unit test cho tầng web.",
@@ -210,6 +227,27 @@ PROJ = {
                            date="09/2026", bullets=[
     "<b>Flutter / Dart</b>: an <code>ApiClient</code> layer unwrapping the response envelope in exactly one place and normalising every failure; <b>provider</b> drives pagination, infinite scroll, a 350ms debounce and a monotonic <code>requestId</code> that discards late responses; <b>HLS</b> playback, HTTP layer unit-tested with MockClient. &nbsp;github.com/nguyenquocanhz/rapphim_mobile",
     "<b>React Native 0.86 / Expo SDK 57 / TypeScript</b>: <b>expo-router</b> file-based navigation across five tabs plus detail, search and watch screens; an in-app settings screen changes the backend address at runtime, persisted with AsyncStorage. <b>GitHub Actions</b> CI builds the iOS .ipa on a macOS runner.",
+ ]),
+
+ 'heluong_vi': dict(title="Hệ thống thương mại điện tử tự xây", org="— từ đặc tả tới vận hành",
+                    date="2023 – nay", bullets=[
+    "Tự làm trọn vòng đời một hệ thống bán hàng: khảo sát yêu cầu, thiết kế cơ sở dữ liệu, lập trình, triển khai lên máy chủ và duy trì — nên nắm được cách một nhóm phần mềm ước lượng công việc và điều gì thực sự tốn thời gian.",
+    "Thiết kế <b>REST API có tài liệu OpenAPI tự sinh</b> cho một hệ thống khác, đủ để đọc và đánh giá tài liệu kỹ thuật do đơn vị phát triển bàn giao.",
+ ]),
+
+ 'ittools_py_vi': dict(title="Bộ công cụ vận hành tự viết", org="— Python và PowerShell, mã nguồn mở",
+                       date="2025 – 2026", bullets=[
+    "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
+    "<b>sshvault</b> (Python) — kho lưu khoá SSH và thông tin máy chủ, mã hoá <b>AES-256-GCM</b> khi lưu trữ.",
+    "<b>TJprojMain_Remove</b> (PowerShell) — dọn mã độc đào coin trên máy trạm Windows.",
+ ]),
+
+ 'rapphim_contract_vi': dict(title="RapPhim WareHouse", org="— thiết kế API contract cho hệ thống nhiều client",
+                             date="09/2026", bullets=[
+    "Phân tích yêu cầu rồi <b>thiết kế API contract</b> trước khi code: đặt tên và phiên bản hoá endpoint (<code>/api/v1</code>), thống nhất envelope phản hồi, chuẩn hoá mã lỗi — sau đó ba client (web, Android, iOS) đều tiêu thụ đúng contract đó mà không phải sửa backend.",
+    "Thiết kế <b>sơ đồ thực thể</b> cho domain phim, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về một mô hình duy nhất; <b>validation tại biên</b> bằng Bean Validation, lỗi trả về theo cấu trúc cố định.",
+    "Tài liệu <b>OpenAPI 3.1 tự sinh từ code</b> nên không bao giờ lệch với hiện thực; Swagger UI gọi thử trực tiếp. Backend Spring Boot 4.1 / Java 17, đóng gói <b>Docker</b>, CI <b>GitHub Actions</b>.",
+    "github.com/nguyenquocanhz/RapPhimWareHouse &nbsp;·&nbsp; client TypeScript: github.com/nguyenquocanhz/rapphim_mobile",
  ]),
 
  'store_vi': dict(title="Store Management System", org="— phần mềm quản lý cửa hàng C# / SQL Server",
@@ -325,6 +363,87 @@ VARIANTS = {
      ("Mobile", "<b>React Native / Expo</b> và <b>Flutter (Dart)</b> — expo-router, provider, video_player; Android (Java, Kotlin) — MVVM, Room"),
      ("Công cụ", "Git / GitHub / GitLab, GitHub Actions CI/CD, Docker, Linux server, Canva"),
      ("Làm việc từ xa", "3 năm làm online với khách hàng — tự quản lý tiến độ, chủ động báo cáo, bàn giao đúng hạn; máy tính cá nhân đầy đủ"),
+   ]),
+
+ # ------------------------------------------------- TMA Solutions — Fullstack (VI)
+ "CV-NguyenQuocAnh-TMA-Fullstack": dict(
+   lang=L_VI, exp=EXP_VI, edu=EDU_VI,
+   role="IT Fullstack Developer &middot; Java / Spring Boot &middot; React / Next.js",
+   summary=("Tôi đã tốt nghiệp ngành Công nghệ thông tin hệ chính quy, xếp loại <b>Xuất sắc</b> với "
+            "<b>GPA 3.65/4.0 (8.73/10)</b>, và đã có 3 năm làm sản phẩm web chạy thật cho khách hàng. Tôi làm được "
+            "cả hai đầu trên cùng một hệ thống: REST API 32 endpoint bằng <b>Java 17 + Spring Boot</b>, giao diện "
+            "<b>Next.js 16 + React 19 + TypeScript</b>, cùng hai client di động bằng <b>React Native</b> và "
+            "<b>Flutter</b>. Tôi mong được tham gia đội fullstack tại TMA Solutions để đóng góp cả phần API lẫn giao "
+            "diện, và học cách làm dự án phần mềm ở quy mô doanh nghiệp."),
+   projects=['rapphim_fe_vi','rapphim_mobile_vi','qrwallet_vi','shop_vi'],
+   skills=[
+     ("Ngôn ngữ", "Java 17, C#, TypeScript / JavaScript, Dart, PHP 7/8, Python"),
+     ("Backend", "Spring Boot, Spring MVC, Bean Validation, RESTful API, OpenAPI / Swagger, Node.js, .NET &amp; ASP.NET Core"),
+     ("Frontend", "Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Bootstrap 5, Vue.js, responsive UI"),
+     ("Cơ sở dữ liệu", "MySQL 8, SQL Server — thiết kế schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn"),
+     ("Mobile", "React Native / Expo (TypeScript), Flutter (Dart), Android (Java, Kotlin) — MVVM, Room"),
+     ("DevOps", "Docker &amp; docker-compose, Linux server, Git / GitHub / GitLab, GitHub Actions CI/CD"),
+     ("Nguyên lý", "OOP, SOLID, design patterns, kiến trúc phân tầng, MVVM, caching, Agile / Scrum"),
+   ]),
+
+ # --------------------------------------- Fullstack (EN) — cong ty outsourcing
+ "CV-NguyenQuocAnh-EN-Fullstack": dict(
+   lang=L_EN, exp=EXP_EN, edu=EDU_EN,
+   role="IT Fullstack Developer &middot; Java / Spring Boot &middot; React / Next.js",
+   summary=("Software engineering graduate with <b>Excellent</b> standing (GPA 3.65/4.0) and three years building "
+            "and operating production web products for clients. Works across the full stack of a single system: a "
+            "<b>32-endpoint REST API</b> on <b>Java 17 + Spring Boot</b>, a <b>Next.js 16 / React 19 / TypeScript</b> "
+            "front end, and two mobile clients in <b>React Native</b> and <b>Flutter</b> — designing the API contract, "
+            "then consuming it from every client. Used to Git Flow, code review, CI/CD and generated API documentation. "
+            "Looking to join a delivery team working with international clients."),
+   projects=['rapphim_en','rapphim_mobile_en','qrwallet_en'],
+   skills=[
+     ("Languages", "Java 17, C#, TypeScript / JavaScript, Dart, PHP 7/8, Python"),
+     ("Frontend", "Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Bootstrap 5, Vue.js, responsive UI"),
+     ("Backend", "Spring Boot, Spring MVC, Bean Validation, RESTful API, OpenAPI / Swagger, Node.js, .NET &amp; ASP.NET Core"),
+     ("Databases", "MySQL 8, SQL Server — normalised schema design (ERD), stored procedures, indexing, query optimisation"),
+     ("Mobile", "React Native / Expo (TypeScript), Flutter (Dart), Android (Java, Kotlin) — MVVM, Room"),
+     ("Delivery", "Docker &amp; docker-compose, Linux servers, Git Flow, code review, GitHub Actions CI/CD, unit testing"),
+     ("Principles", "OOP, SOLID, design patterns, layered architecture, MVVM, caching, Agile / Scrum"),
+   ]),
+
+ # ------------------------------------------- IT – Chuyển đổi số (VI)
+ "CV-NguyenQuocAnh-ChuyenDoiSo": dict(
+   lang=L_VI, exp=EXP_CDS_VI, edu=EDU_VI,
+   role="Nhân viên IT – Chuyển đổi số &middot; Hỗ trợ hệ thống &amp; phối hợp đơn vị phần mềm",
+   summary=("Tôi tốt nghiệp ngành Công nghệ thông tin và có 3 năm vừa làm phần mềm cho khách hàng, vừa vận hành "
+            "hệ thống chạy thật. Từng đứng ở <b>phía đơn vị phát triển</b> nên tôi hiểu cách một nhóm phần mềm tiếp "
+            "nhận yêu cầu, ước lượng công việc và xử lý lỗi — khi làm đầu mối giữa các phòng ban và nhà cung cấp, tôi "
+            "đánh giá được yêu cầu nào khả thi và theo dõi được tiến độ. Tôi cũng tự viết công cụ tự động hoá bằng "
+            "<b>Python</b> và <b>PowerShell</b> để cắt việc thủ công, và quen xử lý sự cố máy tính, máy in, mạng cho "
+            "người dùng cuối."),
+   projects=['ittools_vi','heluong_vi'],
+   skills=[
+     ("Hỗ trợ &amp; vận hành", "Chẩn đoán phần cứng &amp; phần mềm, cài đặt và khắc phục hệ điều hành, máy in mạng LAN, hỗ trợ người dùng cuối, xử lý mã độc"),
+     ("Hệ thống &amp; mạng", "Windows Server, Linux (Ubuntu / Debian), Docker, quản trị VPS, DNS, tên miền &amp; SSL, sao lưu và phục hồi"),
+     ("Chuyển đổi số", "Python, PowerShell, Bash — script giám sát, dọn dẹp, cài đặt tự động; ứng dụng công cụ AI vào quy trình nội bộ"),
+     ("Phân tích &amp; phối hợp", "Tiếp nhận yêu cầu nghiệp vụ, viết đặc tả chức năng, thiết kế schema (ERD), đọc tài liệu API (OpenAPI), theo dõi tiến độ qua Git / issue"),
+     ("Cơ sở dữ liệu", "MySQL, SQL Server — truy vấn, sao lưu, phục hồi, tối ưu hiệu năng"),
+     ("Lập trình &amp; nghiệp vụ", "Java, C#, PHP, JavaScript / TypeScript — đủ để đọc hiểu và đánh giá sản phẩm của đơn vị phát triển &middot; POS KiotViet, Microsoft Office"),
+   ]),
+
+ # ----------------------------------------- Fresher Backend (VI) — Node/TS/Python
+ "CV-NguyenQuocAnh-Fresher-Backend": dict(
+   lang=L_VI, exp=EXP_VI, edu=EDU_VI,
+   role="Fresher Backend Developer &middot; Node.js / TypeScript / Python &middot; SQL &amp; REST API",
+   summary=("Tôi tốt nghiệp ngành Công nghệ thông tin và đã có 3 năm làm sản phẩm chạy thật. Tôi quen việc "
+            "<b>phân tích và thiết kế trước khi code</b> — viết use case, dựng sơ đồ thực thể (ERD), chốt API "
+            "contract, xử lý validation tại biên — rồi tự hiện thực bằng <b>TypeScript, Node.js, Python</b> hoặc Java. "
+            "Gần đây tôi thiết kế một REST API 32 endpoint có tài liệu OpenAPI tự sinh, rồi viết ba client tiêu thụ "
+            "chính contract đó. Toàn bộ mã nguồn công khai trên GitHub, đẩy code hằng ngày."),
+   projects=['rapphim_contract_vi','pulse_vi','ittools_py_vi'],
+   skills=[
+     ("Ngôn ngữ", "<b>TypeScript / JavaScript</b>, <b>Python</b>, Java 17, C#, PHP 7/8, Dart"),
+     ("Backend", "<b>Node.js</b>, RESTful API, OpenAPI / Swagger, Spring Boot, ASP.NET Core — thiết kế API contract, validation tại biên, caching"),
+     ("Cơ sở dữ liệu", "<b>MySQL 8, SQL Server</b> — thiết kế schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn"),
+     ("Frontend", "React 19, Next.js 16 (App Router), Tailwind CSS, Bootstrap 5, HTML5 / CSS3 — biết gọi API và chia nhỏ component"),
+     ("Công cụ", "<b>Git / GitHub</b> (223 repo công khai), GitHub Actions CI/CD, Docker &amp; docker-compose, Linux server"),
+     ("Phân tích", "Use case, đặc tả chức năng, ERD, API contract, data validation, tài liệu kỹ thuật"),
    ]),
 
  # ------------------------------------------------------------- Backend (EN)
