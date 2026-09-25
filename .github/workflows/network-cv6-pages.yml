@@ -1,0 +1,48 @@
+name: NetWork-CV6 → GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'NetWork-CV6/**'
+      - '.github/workflows/network-cv6-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test NetWork-CV6/tests/ipv6.test.js
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      # Chỉ đưa trang lên, không kèm test và các file CV ở thư mục gốc.
+      - run: |
+          mkdir -p _site
+          cp NetWork-CV6/index.html NetWork-CV6/style.css NetWork-CV6/app.js \
+             NetWork-CV6/ipv6.js NetWork-CV6/samples.js _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

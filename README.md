@@ -99,6 +99,15 @@ Chỉ dùng thư viện chuẩn, chạy hoàn toàn cục bộ: không truy cậ
 nhập vào trang tuyển dụng nào, không tự nộp hồ sơ. Việc nộp vẫn do người làm, từng
 tin một.
 
+## NetWork-CV6 — phân tích mạng IPv6
+
+Thư mục [`NetWork-CV6/`](NetWork-CV6/) là một trang web tĩnh chạy trên GitHub Pages:
+dán một địa chỉ IPv6 hoặc output `ip addr` / `ipconfig /all`, trang cho biết địa chỉ
+thuộc loại gì, có công khai ra Internet không, có làm lộ MAC không, rồi sinh sẵn lệnh
+UFW và cấu hình netplan để khoá lại. Có thêm công cụ chia subnet và đổi MAC → EUI-64.
+Chạy hoàn toàn trong trình duyệt, không gửi dữ liệu đi đâu. Chi tiết trong
+[`NetWork-CV6/README.md`](NetWork-CV6/README.md).
+
 ---
 
 Liên hệ: [github.com/nguyenquocanhz](https://github.com/nguyenquocanhz) ·

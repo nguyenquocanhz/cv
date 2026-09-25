@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NetWork-CV6 · Phân tích IPv6</title>
+<meta name="description" content="Phân tích địa chỉ và mạng IPv6 ngay trong trình duyệt: loại địa chỉ, EUI-64 lộ MAC, chia subnet, reverse DNS, đọc output ip addr / ipconfig.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e5f63'/%3E%3Ctext x='16' y='21.5' font-family='monospace' font-size='14' font-weight='700' fill='white' text-anchor='middle'%3Ev6%3C/text%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('ncv6-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">v6</span>
+      <div>
+        <h1>NetWork-CV6</h1>
+        <p>Phân tích mạng IPv6 — chạy hoàn toàn trong trình duyệt</p>
+      </div>
+    </div>
+    <button type="button" id="theme" class="icon-btn" aria-label="Đổi giao diện sáng / tối" title="Sáng / tối">
+      <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="wrap tabs" role="tablist" aria-label="Công cụ">
+    <button type="button" class="tab" role="tab" id="tab-analyze" data-tab="analyze" aria-controls="panel-analyze">Địa chỉ</button>
+    <button type="button" class="tab" role="tab" id="tab-network" data-tab="network" aria-controls="panel-network">Mạng của tôi</button>
+    <button type="button" class="tab" role="tab" id="tab-subnet" data-tab="subnet" aria-controls="panel-subnet">Chia subnet</button>
+    <button type="button" class="tab" role="tab" id="tab-mac" data-tab="mac" aria-controls="panel-mac">MAC → IPv6</button>
+    <button type="button" class="tab" role="tab" id="tab-ref" data-tab="ref" aria-controls="panel-ref">Tra cứu</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <!-- Địa chỉ -->
+  <section class="panel" id="panel-analyze" role="tabpanel" aria-labelledby="tab-analyze">
+    <div class="card">
+      <label class="lbl" for="addr-in">Địa chỉ IPv6 — có thể kèm /prefix hoặc %zone</label>
+      <div class="input-row">
+        <input id="addr-in" class="input big mono" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" placeholder="vd. 2001:db8::21a:2bff:fe3c:4d5e/64" aria-describedby="addr-err">
+        <button type="button" class="btn ghost" id="addr-clear">Xoá</button>
+      </div>
+      <p class="err" id="addr-err" role="alert" hidden></p>
+      <div class="chips" id="addr-examples" aria-label="Ví dụ"></div>
+    </div>
+    <div id="addr-out" class="out" aria-live="polite"></div>
+  </section>
+
+  <!-- Mạng của tôi -->
+  <section class="panel" id="panel-network" role="tabpanel" aria-labelledby="tab-network" hidden>
+    <div class="card">
+      <h2 class="h">Phân tích mạng IPv6 của máy</h2>
+      <p class="muted lead">Chạy lệnh dưới đây trên máy cần kiểm tra rồi dán kết quả vào ô. Mọi thứ xử lý ngay trong trình duyệt — nội dung không được gửi đi đâu, cũng không được lưu lại.</p>
+      <div class="cmds">
+        <div class="cmd"><span>Linux</span><code>ip addr; ip -6 route</code><button type="button" class="copy" data-copy="ip addr; ip -6 route" aria-label="Chép lệnh Linux"></button></div>
+        <div class="cmd"><span>Windows</span><code>ipconfig /all</code><button type="button" class="copy" data-copy="ipconfig /all" aria-label="Chép lệnh Windows"></button></div>
+        <div class="cmd"><span>macOS</span><code>ifconfig</code><button type="button" class="copy" data-copy="ifconfig" aria-label="Chép lệnh macOS"></button></div>
+      </div>
+      <label class="lbl" for="net-in">Kết quả lệnh</label>
+      <textarea id="net-in" class="input mono" rows="10" spellcheck="false" autocomplete="off" placeholder="Dán output vào đây…"></textarea>
+      <div class="row">
+        <span class="muted small">Chưa có máy để thử? Dán mẫu:</span>
+        <span class="chips flat" id="net-samples"></span>
+        <button type="button" class="btn ghost small-btn" id="net-clear">Xoá</button>
+      </div>
+    </div>
+    <div id="net-out" class="out" aria-live="polite"></div>
+  </section>
+
+  <!-- Chia subnet -->
+  <section class="panel" id="panel-subnet" role="tabpanel" aria-labelledby="tab-subnet" hidden>
+    <div class="card">
+      <h2 class="h">Chia subnet IPv6</h2>
+      <p class="muted lead">Nhập khối mạng nhà mạng cấp (thường là /56 hoặc /48) rồi chọn độ dài mạng con. Mỗi mạng LAN nên là một /64.</p>
+      <label class="lbl" for="sn-in">Khối mạng</label>
+      <input id="sn-in" class="input big mono" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" value="2001:db8:abcd::/48" aria-describedby="sn-err">
+      <p class="err" id="sn-err" role="alert" hidden></p>
+      <div class="len-row">
+        <label class="lbl" for="sn-len">Chia thành các mạng <output id="sn-len-out" class="mono accent" for="sn-len">/64</output></label>
+        <input type="range" id="sn-len" min="49" max="128" value="64">
+        <div class="chips" id="sn-quick"></div>
+      </div>
+    </div>
+    <div id="sn-out" class="out" aria-live="polite"></div>
+  </section>
+
+  <!-- MAC → IPv6 -->
+  <section class="panel" id="panel-mac" role="tabpanel" aria-labelledby="tab-mac" hidden>
+    <div class="card">
+      <h2 class="h">Từ MAC ra địa chỉ IPv6 (EUI-64)</h2>
+      <p class="muted lead">Cách SLAAC kiểu cũ tự tạo địa chỉ từ MAC card mạng — cũng là lý do địa chỉ đó làm lộ MAC. Có sẵn địa chỉ IPv6 rồi? Dán vào tab <a href="#analyze">Địa chỉ</a> để suy ngược ra MAC.</p>
+      <div class="two">
+        <div>
+          <label class="lbl" for="mac-in">Địa chỉ MAC</label>
+          <input id="mac-in" class="input mono" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" value="00:1a:2b:3c:4d:5e" aria-describedby="mac-err">
+        </div>
+        <div>
+          <label class="lbl" for="mac-prefix">Prefix /64 của mạng <span class="muted">(không bắt buộc)</span></label>
+          <input id="mac-prefix" class="input mono" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" placeholder="vd. 2001:db8:c872:19b0::/64">
+        </div>
+      </div>
+      <p class="err" id="mac-err" role="alert" hidden></p>
+    </div>
+    <div id="mac-out" class="out" aria-live="polite"></div>
+  </section>
+
+  <!-- Tra cứu -->
+  <section class="panel" id="panel-ref" role="tabpanel" aria-labelledby="tab-ref" hidden>
+    <div id="ref-out" class="out"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    NetWork-CV6 · Nguyễn Quốc Anh ·
+    <a href="https://github.com/nguyenquocanhz/cv/tree/main/NetWork-CV6">Mã nguồn</a> ·
+    Không dùng cookie, không gửi dữ liệu ra ngoài.
+  </div>
+</footer>
+<div class="sr" id="live" aria-live="polite"></div>
+
+<script src="ipv6.js"></script>
+<script src="samples.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
