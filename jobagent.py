@@ -48,6 +48,9 @@ SKILLS = {
     "rest":        (["rest", "restful", "api", "openapi", "swagger"], "REST API phiên bản hoá /api/v1, tài liệu OpenAPI 3.1 tự sinh", 3),
     "git":         (["git", "github", "gitlab"], "223 repo công khai, đẩy code hằng ngày", 3),
     "html":        (["html", "html5", "css", "css3", "tailwind", "bootstrap"], "Giao diện responsive bằng Tailwind 4 và Bootstrap 5", 3),
+    "hardware":    (["phần cứng", "hardware", "laptop", "linh kiện", "lắp ráp"], "Z1: chẩn đoán, xử lý sự cố phần cứng máy tính và máy in cho người dùng nội bộ", 2),
+    "windows":     (["windows", "hệ điều hành", "cài win", "driver"], "Cài đặt, khắc phục Windows / Windows Server; script PowerShell dọn mã độc trên máy trạm", 2),
+    "network":     (["network", "mạng lan", "mạng máy tính", "wifi", "router", "tcp/ip", "dns"], "Máy in mạng LAN ở Z1; DNS, tên miền, SSL, SSH trên hạ tầng máy chủ tự quản trị", 2),
     "figma":       (["figma"], "", 0),          # chưa có bằng chứng
     "aws":         (["aws", "azure", "gcp", "cloud"], "", 0),
     "microservice":(["microservice", "micro service", "kafka", "rabbitmq"], "", 0),
@@ -59,8 +62,9 @@ VARIANTS = {
     "NET-Backend":     ["csharp", "sql", "rest", "docker", "linux", "cicd"],
     "Fullstack":       ["react", "nextjs", "typescript", "javascript", "nodejs", "java", "sql", "html"],
     "Fresher-Remote":  ["react", "nextjs", "javascript", "typescript", "html", "nodejs", "csharp", "flutter", "reactnative"],
-    "IT-Support":      ["linux", "python", "sql", "docker"],
+    "IT-Support":      ["linux", "python", "sql", "docker", "windows", "network"],
     "EN-Backend":      ["java", "spring", "rest", "sql", "docker", "cicd"],
+    "KyThuatMayTinh":  ["hardware", "windows", "network"],
 }
 
 EXP_PATTERNS = [

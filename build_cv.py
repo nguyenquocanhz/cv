@@ -136,6 +136,24 @@ EXP_CDS_VI = [
     ]),
 ]
 
+# Bản kỹ thuật máy tính: Z1 là kinh nghiệm sát nhất nên đứng đầu (xếp theo ngày bắt đầu);
+# freelance kể theo góc vận hành và hỗ trợ khách hàng, bỏ bớt phần lập trình.
+EXP_KT_VI = [
+    dict(title="Technical Support Associate", org="— Công ty Cổ phần Máy tính Z1",
+         date="09/2025 – 10/2025", bullets=[
+        "Hỗ trợ người dùng nội bộ: chẩn đoán và xử lý sự cố <b>phần cứng, phần mềm, máy in và mạng</b> trên hệ thống máy tính của công ty, giảm thời gian gián đoạn vận hành.",
+        "Vận hành hệ thống <b>POS KiotViet</b>; quản lý sản phẩm trên sàn thương mại điện tử; quản trị và tối ưu hiệu năng website công ty.",
+        "Ứng dụng công cụ AI tự động hoá quy trình nội bộ.",
+    ]),
+    dict(title="Freelance System Administrator &amp; Developer",
+         org="— hạ tầng máy chủ và hệ thống bán hàng tự động",
+         date="07/2023 – nay", bullets=[
+        f"Quản trị hạ tầng máy chủ nhiều vùng cho khách hàng, uptime <b>{UPTIME}</b>; trực tiếp xử lý sự cố vận hành và khôi phục dịch vụ.",
+        "Cài đặt, cấu hình và bảo mật <b>Linux server</b>; quản lý <b>DNS</b>, tên miền, chứng chỉ SSL; <b>sao lưu và phục hồi</b> dữ liệu.",
+        f"<b>Hỗ trợ khách hàng sau bàn giao</b>: tiếp nhận lỗi người dùng báo, phân loại mức độ ưu tiên và xử lý dứt điểm; hệ thống phục vụ <b>{USERS} khách hàng</b> với <b>{ORDERS} đơn hàng</b> mỗi tháng.",
+    ]),
+]
+
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
     "Tối ưu hiệu năng bằng <b>Caffeine cache</b> giảm số lần gọi API ngoài; <b>Spring Actuator</b> cho health check; <b>Bean Validation</b> kiểm soát đầu vào; có unit test cho tầng web.",
@@ -253,6 +271,14 @@ PROJ = {
  'store_vi': dict(title="Store Management System", org="— phần mềm quản lý cửa hàng C# / SQL Server",
                   date="07/2024 – 08/2024", bullets=[
     "Ứng dụng desktop <b>C# / SQL Server</b> theo kiến trúc <b>3 lớp</b>; tự thiết kế database schema, phân chia công việc và review code cho nhóm 5 người.",
+ ]),
+
+ 'ittools_kt_vi': dict(title="Bộ công cụ kỹ thuật tự viết", org="— PowerShell, Python, Node.js, mã nguồn mở",
+                       date="2025 – 2026", bullets=[
+    "<b>TJprojMain_Remove</b> (PowerShell) — script dọn mã độc đào coin trên máy trạm Windows.",
+    "<b>pulse</b> (Node.js) — giám sát uptime dịch vụ: kiểm tra định kỳ, ghi nhận sự cố và hiển thị trang trạng thái.",
+    "<b>sshvault</b> (Python) — kho lưu khoá SSH và thông tin máy chủ, mã hoá <b>AES-256-GCM</b> khi lưu trữ.",
+    "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
  ]),
 }
 
@@ -425,6 +451,28 @@ VARIANTS = {
      ("Phân tích &amp; phối hợp", "Tiếp nhận yêu cầu nghiệp vụ, viết đặc tả chức năng, thiết kế schema (ERD), đọc tài liệu API (OpenAPI), theo dõi tiến độ qua Git / issue"),
      ("Cơ sở dữ liệu", "MySQL, SQL Server — truy vấn, sao lưu, phục hồi, tối ưu hiệu năng"),
      ("Lập trình &amp; nghiệp vụ", "Java, C#, PHP, JavaScript / TypeScript — đủ để đọc hiểu và đánh giá sản phẩm của đơn vị phát triển &middot; POS KiotViet, Microsoft Office"),
+   ]),
+
+ # ------------------------------ Kỹ thuật máy tính — cửa hàng bán lẻ máy tính (VI)
+ # JD gate bằng bằng cấp và kiến thức laptop / desktop / mạng, không hỏi lập trình:
+ # đưa bằng cấp và Z1 lên đầu, phần code chỉ còn là công cụ hỗ trợ vận hành.
+ "CV-NguyenQuocAnh-KyThuatMayTinh": dict(
+   lang=L_VI, exp=EXP_KT_VI, edu=EDU_VI,
+   role="Kỹ thuật viên máy tính &middot; Laptop / Desktop &middot; Hệ điều hành &middot; Mạng cơ bản",
+   summary=("Tôi tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy, xếp loại <b>Xuất sắc</b> (GPA 3.65/4.0), "
+            "từng làm hỗ trợ kỹ thuật tại <b>Công ty Cổ phần Máy tính Z1</b> — chẩn đoán và xử lý sự cố phần cứng, "
+            "phần mềm, máy in, mạng — và có 3 năm tự quản trị hạ tầng máy chủ chạy thật với uptime 99%. Tôi cài đặt, "
+            "khắc phục <b>Windows</b> và <b>Linux</b>, xử lý mã độc, và tự viết script <b>PowerShell / Python</b> để "
+            "bớt việc lặp lại. Tôi mong được làm kỹ thuật viên tại một hệ thống bán lẻ máy tính, làm việc trực tiếp "
+            "với khách hàng và tiếp xúc nhiều sản phẩm công nghệ mới."),
+   projects=['ittools_kt_vi'],
+   skills=[
+     ("Phần cứng", "Chẩn đoán và xử lý sự cố laptop &amp; desktop; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
+     ("Tự động hoá", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động; Telegram bot cảnh báo"),
+     ("Nghiệp vụ", "POS KiotViet, quản lý sản phẩm trên sàn TMĐT, Microsoft Office, Canva &middot; lập trình Java, C#, PHP, JavaScript"),
+     ("Tác phong", "Quen xử lý sự cố gấp khi hệ thống của khách đang chạy; chủ động báo cáo, bàn giao đúng hạn; sẵn sàng xoay ca"),
    ]),
 
  # ----------------------------------------- Fresher Backend (VI) — Node/TS/Python
