@@ -1,0 +1,11 @@
+{
+  "name": "giaotrinh-on-tap-ky-thuat",
+  "private": true,
+  "description": "Giáo trình ôn tập Kỹ thuật viên máy tính — dựng DOCX bằng docx-js rồi xuất PDF",
+  "scripts": {
+    "build": "python3 build.py"
+  },
+  "dependencies": {
+    "docx": "9.7.2"
+  }
+}

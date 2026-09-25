@@ -100,6 +100,10 @@ Chỉ dùng thư viện chuẩn, chạy hoàn toàn cục bộ: không truy cậ
 nhập vào trang tuyển dụng nào, không tự nộp hồ sơ. Việc nộp vẫn do người làm, từng
 tin một.
 
+## on-tap — giáo trình ôn tập Kỹ thuật viên máy tính
+
+Thư mục `on-tap/` chứa giáo trình PDF 56 trang để ôn phỏng vấn vị trí kỹ thuật viên phần cứng: cấu trúc máy tính, CPU & socket, RAM, ổ cứng, chuẩn kết nối, mạng cơ bản. Cách dựng lại xem `on-tap/README.md`.
+
 ---
 
 Liên hệ: [github.com/nguyenquocanhz](https://github.com/nguyenquocanhz) ·

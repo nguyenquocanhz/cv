@@ -18,3 +18,8 @@ toeic-vocab/
 # thu tu va tin nhan ung tuyen — chua thong tin lien he cua nha tuyen dung
 email-*.txt
 zalo-*.txt
+
+# giáo trình ôn tập: thư viện node và file trung gian của build.py
+on-tap/node_modules/
+on-tap/pages.json
+on-tap/headings.json
