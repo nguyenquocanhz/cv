@@ -293,6 +293,9 @@ L_VI = dict(summary="Tóm tắt", exp="Kinh nghiệm", proj="Dự án tiêu bi�
             skills="Kỹ năng", edu="Học vấn &amp; chứng chỉ", loc="Bình Tân, TP. Hồ Chí Minh")
 L_EN = dict(summary="Summary", exp="Experience", proj="Selected projects",
             skills="Skills", edu="Education &amp; certification", loc="Binh Tan, Ho Chi Minh City")
+# CV kiểu Việt Nam cho nhà tuyển dụng bán lẻ: tiêu đề mục theo cách HR quen đọc.
+L_RETAIL_VI = dict(L_VI, summary="Mục tiêu nghề nghiệp", exp="Kinh nghiệm làm việc",
+                   proj="Dự án cá nhân", extra="Thông tin thêm")
 
 VARIANTS = {
  # ---------------------------------------------------------------- Java (VI)
@@ -475,6 +478,37 @@ VARIANTS = {
      ("Tác phong", "Quen xử lý sự cố gấp khi hệ thống của khách đang chạy; chủ động báo cáo, bàn giao đúng hạn; sẵn sàng xoay ca"),
    ]),
 
+ # ----------------------------- MemoryZone — Kỹ thuật máy tính, CV kiểu Việt Nam
+ # HR bán lẻ lọc theo năm sinh, giới tính, bằng cấp trước khi đọc kinh nghiệm: đưa
+ # thông tin cá nhân lên đầu, học vấn trước kinh nghiệm, mỗi yêu cầu của JD có một dòng tương ứng.
+ "CV-NguyenQuocAnh-MemoryZone": dict(
+   lang=L_RETAIL_VI, edu=EDU_VI,
+   exp=[dict(EXP_KT_VI[0], title="Nhân viên hỗ trợ kỹ thuật"),
+        dict(EXP_KT_VI[1], title="Quản trị hệ thống &amp; phát triển phần mềm (tự do)")],
+   order=["summary", "edu", "exp", "skills", "proj", "extra"],
+   role="Ứng tuyển vị trí: Kỹ thuật máy tính &middot; MemoryZone",
+   contact=("<b>Năm sinh:</b> 2003 &nbsp;&middot;&nbsp; <b>Giới tính:</b> Nam &nbsp;&middot;&nbsp; "
+            "<b>Điện thoại:</b> 0397 215 747 &nbsp;&middot;&nbsp; <b>Email:</b> nguyenquocanh.dev@gmail.com<br>"
+            "<b>Địa chỉ:</b> Bình Tân, TP. Hồ Chí Minh &nbsp;&middot;&nbsp; github.com/nguyenquocanhz "
+            "&nbsp;&middot;&nbsp; nguyenquocanh.io.vn"),
+   summary=("Tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy loại <b>Xuất sắc</b>, từng làm hỗ trợ kỹ thuật "
+            "tại công ty máy tính, tôi mong muốn trở thành <b>kỹ thuật viên tại MemoryZone</b>: kiểm tra, cài đặt, "
+            "nâng cấp và xử lý sự cố laptop, PC cho khách hàng. Ngắn hạn, tôi đặt mục tiêu nắm vững quy trình kỹ thuật "
+            "– bảo hành của cửa hàng và các dòng sản phẩm đang kinh doanh; dài hạn, trở thành kỹ thuật viên vững tay "
+            "nghề, tư vấn đúng nhu cầu khách và hỗ trợ được đồng nghiệp mới."),
+   projects=['ittools_kt_vi'],
+   skills=[
+     ("Laptop &amp; Desktop", "Chẩn đoán và xử lý sự cố phần cứng, phần mềm; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
+     ("Công cụ", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động &middot; POS KiotViet, Microsoft Office"),
+     ("Kỹ năng mềm", "Hỗ trợ và giao tiếp với khách hàng; chịu áp lực khi xử lý sự cố gấp; làm việc nhóm — trưởng nhóm 5 người ở hai dự án nhóm"),
+   ],
+   extra=[
+     "Có thể đi làm sau <b>1 tuần</b> kể từ khi nhận việc.",
+     "Sẵn sàng làm <b>xoay ca, 6 ngày/tuần</b> theo lịch của cửa hàng.",
+   ]),
+
  # ----------------------------------------- Fresher Backend (VI) — Node/TS/Python
  "CV-NguyenQuocAnh-Fresher-Backend": dict(
    lang=L_VI, exp=EXP_VI, edu=EDU_VI,
@@ -531,6 +565,9 @@ def entry_html(e):
     return "\n".join(out)
 
 
+ORDER = ["summary", "exp", "proj", "skills", "edu"]
+
+
 def build(slug, v):
     L = v["lang"]
     parts = [
@@ -540,24 +577,30 @@ def build(slug, v):
       '<header>',
       '  <div class="name">Nguyễn Quốc Anh</div>',
       f'  <div class="role">{v["role"]}</div>',
-      f'  <div class="contact">{CONTACT.format(loc=L["loc"])}</div>',
+      f'  <div class="contact">{v.get("contact") or CONTACT.format(loc=L["loc"])}</div>',
       '  <div class="rule-top"></div>',
       '</header>',
-      f'<h2>{L["summary"]}</h2>',
-      f'<p class="summary">{v["summary"]}</p>',
-      f'<h2>{L["exp"]}</h2>',
     ]
-    parts += [entry_html(e) for e in v["exp"]]
-    parts.append(f'<h2>{L["proj"]}</h2>')
-    parts += [entry_html(PROJ[k]) for k in v["projects"]]
-    parts.append(f'<h2>{L["skills"]}</h2>')
-    parts.append('<div class="skills">')
-    for k, val in v["skills"]:
-        parts.append(f'  <div class="skill-row"><div class="skill-key">{k}</div>'
-                     f'<div class="skill-val">{val}</div></div>')
-    parts.append('</div>')
-    parts.append(f'<h2>{L["edu"]}</h2>')
-    parts.append(entry_html(v["edu"]))
+    for sec in v.get("order", ORDER):
+        parts.append(f'<h2>{L[sec]}</h2>')
+        if sec == "summary":
+            parts.append(f'<p class="summary">{v["summary"]}</p>')
+        elif sec == "exp":
+            parts += [entry_html(e) for e in v["exp"]]
+        elif sec == "proj":
+            parts += [entry_html(PROJ[k]) for k in v["projects"]]
+        elif sec == "skills":
+            parts.append('<div class="skills">')
+            for k, val in v["skills"]:
+                parts.append(f'  <div class="skill-row"><div class="skill-key">{k}</div>'
+                             f'<div class="skill-val">{val}</div></div>')
+            parts.append('</div>')
+        elif sec == "edu":
+            parts.append(entry_html(v["edu"]))
+        elif sec == "extra":
+            parts.append('<ul class="extra">')
+            parts += [f'  <li>{x}</li>' for x in v["extra"]]
+            parts.append('</ul>')
     return "\n".join(parts)
 
 

@@ -13,6 +13,7 @@ PDF cùng cập nhật — không phải mở Word sửa tay từng file rồi q
 | `CV-NguyenQuocAnh-Fresher-Remote` | React / Node.js / .NET | Fresher làm việc từ xa |
 | `CV-NguyenQuocAnh-IT-Support` | Kỹ thuật hệ thống & quản trị máy chủ | IT Support, Helpdesk |
 | `CV-NguyenQuocAnh-KyThuatMayTinh` | Laptop / desktop / hệ điều hành / mạng cơ bản | Kỹ thuật viên cửa hàng máy tính |
+| `CV-NguyenQuocAnh-MemoryZone` | CV kiểu Việt Nam: năm sinh, giới tính, mục tiêu nghề nghiệp | MemoryZone — Kỹ thuật máy tính |
 | `CV-NguyenQuocAnh-EN-Backend` | Java / Spring Boot (tiếng Anh) | Công ty FDI, Nhật, Hàn |
 
 Mỗi bản gọn đúng **một trang A4**. `build_cv.py` tự kiểm số trang sau khi dựng và
