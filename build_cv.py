@@ -280,6 +280,11 @@ PROJ = {
     "<b>sshvault</b> (Python) — kho lưu khoá SSH và thông tin máy chủ, mã hoá <b>AES-256-GCM</b> khi lưu trữ.",
     "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
  ]),
+
+ 'ittools_short_vi': dict(title="Công cụ kỹ thuật tự viết", org="— mã nguồn mở trên GitHub",
+                          date="2025 – 2026", bullets=[
+    "<b>pulse</b> (Node.js) giám sát uptime dịch vụ; <b>sshvault</b> (Python) lưu khoá SSH mã hoá AES-256-GCM; <b>TJprojMain_Remove</b> (PowerShell) dọn mã độc đào coin trên máy Windows.",
+ ]),
 }
 
 EDU_VI = dict(title="Cao đẳng Kinh tế – Kỹ thuật TP.HCM (HOTEC)", org="— Công nghệ thông tin (Ứng dụng phần mềm)",
@@ -507,6 +512,46 @@ VARIANTS = {
    extra=[
      "Có thể đi làm sau <b>1 tuần</b> kể từ khi nhận việc.",
      "Sẵn sàng làm <b>xoay ca, 6 ngày/tuần</b> theo lịch của cửa hàng.",
+   ]),
+
+ # ------------------------------------- CV tổng quát (VI) — người thân gửi giúp
+ # Không biết trước công ty hay vị trí: nêu ba hướng việc làm được, kỹ năng trải đều
+ # phần cứng – mạng – lập trình – văn phòng, bớt thuật ngữ ở phần mở đầu cho người đọc không chuyên.
+ "CV-NguyenQuocAnh-TongQuat": dict(
+   lang=dict(L_RETAIL_VI, proj="Dự án tiêu biểu"),
+   edu=dict(EDU_VI, sub="Hệ <b>chính quy</b> &nbsp;&middot;&nbsp; Danh hiệu <b>Kỹ sư thực hành</b> &nbsp;&middot;&nbsp; "
+                       "GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; Tốt nghiệp loại <b>Xuất sắc</b>"),
+   exp=[dict(EXP_CDS_VI[1], title="Nhân viên hỗ trợ kỹ thuật"),
+        dict(title="Lập trình viên &amp; quản trị hệ thống", org="— cộng tác viên tự do, làm việc từ xa",
+             date="07/2023 – nay", bullets=[
+          f"Xây dựng nền tảng bán hàng bằng <b>PHP 8, MySQL, Bootstrap</b> cho khách hàng, phục vụ <b>{USERS} khách hàng</b> với <b>{ORDERS} đơn hàng</b> mỗi tháng; tích hợp cổng thanh toán, đối soát giao dịch realtime.",
+          "Xây dựng hệ thống <b>tự động cấp phát dịch vụ</b> ngay sau khi khách thanh toán, loại bỏ thao tác thủ công.",
+          f"Quản trị máy chủ <b>Linux</b> nhiều vùng, uptime <b>{UPTIME}</b>; xử lý sự cố, sao lưu và phục hồi dữ liệu.",
+          "Tiếp nhận yêu cầu và lỗi từ khách hàng, phân loại mức độ ưu tiên và xử lý dứt điểm.",
+        ])],
+   order=["summary", "edu", "exp", "skills", "proj", "extra"],
+   role="Vị trí mong muốn: Kỹ thuật máy tính &middot; Hỗ trợ IT &middot; Lập trình viên",
+   contact=("<b>Ngày sinh:</b> 28/07/2003 &nbsp;&middot;&nbsp; <b>Giới tính:</b> Nam &nbsp;&middot;&nbsp; "
+            "<b>Điện thoại:</b> 0397 215 747 &nbsp;&middot;&nbsp; <b>Email:</b> nguyenquocanh.dev@gmail.com<br>"
+            "<b>Địa chỉ:</b> Bình Tân, TP. Hồ Chí Minh &nbsp;&middot;&nbsp; github.com/nguyenquocanhz "
+            "&nbsp;&middot;&nbsp; nguyenquocanh.io.vn"),
+   summary=("Tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy loại <b>Xuất sắc</b>, từng làm hỗ trợ kỹ thuật tại "
+            "công ty máy tính và có 3 năm làm cộng tác viên từ xa — viết phần mềm bán hàng, quản trị máy chủ cho khách "
+            "hàng. Tôi mong muốn được làm việc lâu dài ở vị trí <b>kỹ thuật máy tính, hỗ trợ IT hoặc lập trình viên</b>, "
+            "đóng góp ngay bằng kỹ năng xử lý sự cố, cài đặt hệ thống và lập trình, đồng thời được học hỏi để phát triển "
+            "chuyên môn."),
+   projects=['rapphim_mini_vi', 'qrwallet_vi', 'ittools_short_vi'],
+   skills=[
+     ("Phần cứng", "Chẩn đoán, xử lý sự cố laptop, PC, máy in; cài đặt Windows, Linux, driver, phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng &amp; máy chủ", "Mạng LAN, máy in mạng, DNS, tên miền &amp; SSL; quản trị máy chủ Linux / VPS, Docker"),
+     ("Lập trình", "PHP, Java (Spring Boot), C#, JavaScript / TypeScript (React, Next.js), Python; MySQL, SQL Server; Git"),
+     ("Văn phòng", "Microsoft Office, POS KiotViet, quản lý sản phẩm trên sàn thương mại điện tử, Canva"),
+     ("Ngoại ngữ", "Tiếng Anh — TOEIC 575 (07/2024), đọc hiểu tài liệu kỹ thuật"),
+     ("Kỹ năng mềm", "Giao tiếp và hỗ trợ khách hàng; làm việc nhóm — trưởng nhóm 5 người ở hai dự án nhóm; tự quản lý tiến độ khi làm việc từ xa"),
+   ],
+   extra=[
+     "Có thể đi làm sau <b>1 tuần</b> kể từ khi nhận việc.",
+     "Sẵn sàng làm <b>toàn thời gian</b> tại TP. Hồ Chí Minh, có thể làm theo ca.",
    ]),
 
  # ----------------------------------------- Fresher Backend (VI) — Node/TS/Python
