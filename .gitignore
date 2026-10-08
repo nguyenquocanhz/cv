@@ -19,7 +19,7 @@ toeic-vocab/
 email-*.txt
 zalo-*.txt
 
-# giáo trình ôn tập: thư viện node và file trung gian của build.py
-on-tap/node_modules/
+# thư viện node (cv_docx.js, giáo trình) và file trung gian của build.py
+node_modules/
 on-tap/pages.json
 on-tap/headings.json

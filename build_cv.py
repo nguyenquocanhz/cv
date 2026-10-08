@@ -7,7 +7,8 @@ Kết quả: <slug>.html + <slug>.pdf cho mỗi biến thể trong VARIANTS.
 
 Sửa nội dung ở phần DỮ LIỆU bên dưới, chạy lại là ra bộ CV mới.
 """
-import io, os, subprocess, sys
+import html, io, json, os, subprocess, sys, tempfile
+from html.parser import HTMLParser
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -281,9 +282,9 @@ PROJ = {
     "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
  ]),
 
- 'ittools_short_vi': dict(title="Công cụ kỹ thuật tự viết", org="— mã nguồn mở trên GitHub",
-                          date="2025 – 2026", bullets=[
-    "<b>pulse</b> (Node.js) giám sát uptime dịch vụ; <b>sshvault</b> (Python) lưu khoá SSH mã hoá AES-256-GCM; <b>TJprojMain_Remove</b> (PowerShell) dọn mã độc đào coin trên máy Windows.",
+ 'bootreport_vi': dict(title="BootReport", org="— website cho cửa hàng điện thoại, dự án cá nhân",
+                       date="2026", bullets=[
+    "Tự thiết kế và lập trình trọn bộ: giao diện <b>Next.js</b>, backend <b>Spring Boot</b> (REST API). &nbsp;Phone5s.shopmanguon.com",
  ]),
 }
 
@@ -518,6 +519,7 @@ VARIANTS = {
  # Không biết trước công ty hay vị trí: nêu ba hướng việc làm được, kỹ năng trải đều
  # phần cứng – mạng – lập trình – văn phòng, bớt thuật ngữ ở phần mở đầu cho người đọc không chuyên.
  "CV-NguyenQuocAnh-TongQuat": dict(
+   docx=True,  # người thân gửi giúp, cần bản Word để tự sửa
    lang=dict(L_RETAIL_VI, proj="Dự án tiêu biểu"),
    edu=dict(EDU_VI, sub="Hệ <b>chính quy</b> &nbsp;&middot;&nbsp; Danh hiệu <b>Kỹ sư thực hành</b> &nbsp;&middot;&nbsp; "
                        "GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; Tốt nghiệp loại <b>Xuất sắc</b>"),
@@ -540,7 +542,7 @@ VARIANTS = {
             "hàng. Tôi mong muốn được làm việc lâu dài ở vị trí <b>kỹ thuật máy tính, hỗ trợ IT hoặc lập trình viên</b>, "
             "đóng góp ngay bằng kỹ năng xử lý sự cố, cài đặt hệ thống và lập trình, đồng thời được học hỏi để phát triển "
             "chuyên môn."),
-   projects=['rapphim_mini_vi', 'qrwallet_vi', 'ittools_short_vi'],
+   projects=['bootreport_vi', 'rapphim_mini_vi', 'qrwallet_vi'],
    skills=[
      ("Phần cứng", "Chẩn đoán, xử lý sự cố laptop, PC, máy in; cài đặt Windows, Linux, driver, phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
      ("Mạng &amp; máy chủ", "Mạng LAN, máy in mạng, DNS, tên miền &amp; SSL; quản trị máy chủ Linux / VPS, Docker"),
@@ -649,6 +651,84 @@ def build(slug, v):
     return "\n".join(parts)
 
 
+# ----------------------------------------------------------------------------
+# Bản DOCX sửa được (cho người không dùng code): cùng nội dung, dựng bằng cv_docx.js
+# ----------------------------------------------------------------------------
+class _Runs(HTMLParser):
+    """Chuỗi HTML nhỏ trong dữ liệu (<b>, <code>, <br>, &nbsp;…) → danh sách đoạn chữ."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.runs, self.bold, self.code = [], 0, 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ("b", "strong"):
+            self.bold += 1
+        elif tag == "code":
+            self.code += 1
+        elif tag == "br":
+            self.runs.append({"br": True})
+
+    def handle_endtag(self, tag):
+        if tag in ("b", "strong"):
+            self.bold -= 1
+        elif tag == "code":
+            self.code -= 1
+
+    def handle_data(self, data):
+        self.runs.append({"t": data, "b": self.bold > 0, "code": self.code > 0})
+
+
+def runs(s):
+    p = _Runs()
+    p.feed(s)
+    p.close()
+    return p.runs
+
+
+def doc_model(slug, v):
+    L = v["lang"]
+    entry = lambda e: dict(title=runs(e["title"]), org=runs(e["org"]), date=runs(e["date"]),
+                           bullets=[runs(b) for b in e.get("bullets", [])],
+                           sub=runs(e["sub"]) if e.get("sub") else None)
+    secs = []
+    for sec in v.get("order", ORDER):
+        title = html.unescape(L[sec])
+        if sec == "summary":
+            secs.append(dict(kind="text", title=title, runs=runs(v["summary"])))
+        elif sec == "exp":
+            secs.append(dict(kind="entries", title=title, items=[entry(e) for e in v["exp"]]))
+        elif sec == "proj":
+            secs.append(dict(kind="entries", title=title, items=[entry(PROJ[k]) for k in v["projects"]]))
+        elif sec == "edu":
+            secs.append(dict(kind="entries", title=title, items=[entry(v["edu"])]))
+        elif sec == "skills":
+            secs.append(dict(kind="skills", title=title, rows=[[runs(k), runs(val)] for k, val in v["skills"]]))
+        elif sec == "extra":
+            secs.append(dict(kind="list", title=title, items=[runs(x) for x in v["extra"]]))
+    return dict(name="Nguyễn Quốc Anh", role=runs(v["role"]),
+                contact=runs(v.get("contact") or CONTACT.format(loc=L["loc"])), sections=secs)
+
+
+def build_docx(slug, v):
+    """Ghi <slug>.docx qua Node; thiếu Node hoặc thư viện docx thì bỏ qua và báo."""
+    out = os.path.join(OUT_DIR, slug + ".docx")
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
+        json.dump(doc_model(slug, v), f, ensure_ascii=False)
+    try:
+        r = subprocess.run(["node", os.path.join(OUT_DIR, "cv_docx.js"), f.name, out],
+                           capture_output=True, text=True)
+    except FileNotFoundError:
+        print(f"    {slug}: bỏ qua DOCX (cần Node.js, rồi chạy npm install)")
+        return False
+    finally:
+        os.unlink(f.name)
+    if r.returncode != 0:
+        print(f"    {slug}: lỗi dựng DOCX — {r.stderr.strip()[:200]}")
+        return False
+    print(f"    {slug}.docx")
+    return True
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -675,6 +755,8 @@ def main():
             print(f"{flag} {slug:34s} {pages} trang, hết nội dung ở {end:.0f}/842pt")
         except ImportError:
             print(f"    {slug}: đã tạo PDF (cài pymupdf để kiểm tra số trang)")
+        if v.get("docx"):
+            build_docx(slug, v)
     sys.exit(0 if ok else 1)
 
 

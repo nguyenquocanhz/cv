@@ -1,0 +1,8 @@
+{
+  "name": "cv-nguyenquocanh",
+  "private": true,
+  "description": "Thư viện docx cho cv_docx.js — build_cv.py gọi để dựng bản CV .docx sửa được",
+  "dependencies": {
+    "docx": "9.7.2"
+  }
+}

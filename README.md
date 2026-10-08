@@ -14,7 +14,7 @@ PDF cùng cập nhật — không phải mở Word sửa tay từng file rồi q
 | `CV-NguyenQuocAnh-IT-Support` | Kỹ thuật hệ thống & quản trị máy chủ | IT Support, Helpdesk |
 | `CV-NguyenQuocAnh-KyThuatMayTinh` | Laptop / desktop / hệ điều hành / mạng cơ bản | Kỹ thuật viên cửa hàng máy tính |
 | `CV-NguyenQuocAnh-MemoryZone` | CV kiểu Việt Nam: năm sinh, giới tính, mục tiêu nghề nghiệp | MemoryZone — Kỹ thuật máy tính |
-| `CV-NguyenQuocAnh-TongQuat` | CV kiểu Việt Nam, không gắn công ty | Kỹ thuật máy tính, hỗ trợ IT, lập trình — gửi nhiều nơi |
+| `CV-NguyenQuocAnh-TongQuat` | CV kiểu Việt Nam, không gắn công ty; có thêm bản `.docx` sửa được | Kỹ thuật máy tính, hỗ trợ IT, lập trình — gửi nhiều nơi |
 | `CV-NguyenQuocAnh-EN-Backend` | Java / Spring Boot (tiếng Anh) | Công ty FDI, Nhật, Hàn |
 
 Mỗi bản gọn đúng **một trang A4**. `build_cv.py` tự kiểm số trang sau khi dựng và
@@ -35,6 +35,9 @@ OK  CV-NguyenQuocAnh-NET-Backend       1 trang, hết nội dung ở 742/842pt
 ```
 
 Kiểm tra số trang cần `pymupdf`; thiếu thì vẫn dựng được PDF, chỉ bỏ qua bước đếm.
+
+Bản nào có `docx=True` thì dựng thêm `.docx` để người không dùng code sửa trong Word — cần Node.js và
+chạy `npm install` một lần; thiếu Node thì bước này được bỏ qua.
 
 ## Cách tổ chức
 
