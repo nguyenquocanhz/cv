@@ -282,9 +282,15 @@ PROJ = {
     "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
  ]),
 
- 'bootreport_vi': dict(title="BootReport", org="— website cho cửa hàng điện thoại, dự án cá nhân",
-                       date="2026", bullets=[
-    "Tự thiết kế và lập trình trọn bộ: giao diện <b>Next.js</b>, backend <b>Spring Boot</b> (REST API). &nbsp;Phone5s.shopmanguon.com",
+ 'bootreport_vi': dict(title="BootReport-Health", org="— công cụ kiểm tra sức khoẻ laptop, mã nguồn mở",
+                       date="10/2026", bullets=[
+    "Chạy bằng một dòng lệnh: đọc thời gian khởi động, <b>độ chai pin</b> và chu kỳ sạc, <b>SMART ổ SSD/NVMe</b>, RAM, lịch sử lỗi <b>màn hình xanh (BSOD)</b> rồi xuất báo cáo HTML song ngữ Việt – Anh.",
+    "Bản <b>PowerShell</b> cho Windows và bản <b>shell</b> cho Linux, macOS, Android (Termux); chỉ đọc, không sửa hệ thống. &nbsp;github.com/nguyenquocanhz/BootReport-Health",
+ ]),
+
+ 'phone5s_vi': dict(title="Phone5s", org="— website cho cửa hàng điện thoại, dự án cá nhân",
+                    date="2026", bullets=[
+    "Tự thiết kế và lập trình trọn bộ: giao diện <b>Next.js</b>, backend <b>Spring Boot</b> (REST API). &nbsp;phone5s.shopmanguon.com",
  ]),
 }
 
@@ -474,9 +480,9 @@ VARIANTS = {
             "khắc phục <b>Windows</b> và <b>Linux</b>, xử lý mã độc, và tự viết script <b>PowerShell / Python</b> để "
             "bớt việc lặp lại. Tôi mong được làm kỹ thuật viên tại một hệ thống bán lẻ máy tính, làm việc trực tiếp "
             "với khách hàng và tiếp xúc nhiều sản phẩm công nghệ mới."),
-   projects=['ittools_kt_vi'],
+   projects=['bootreport_vi', 'ittools_kt_vi'],
    skills=[
-     ("Phần cứng", "Chẩn đoán và xử lý sự cố laptop &amp; desktop; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Phần cứng", "Chẩn đoán và xử lý sự cố laptop &amp; desktop; kiểm tra độ chai pin, SMART ổ cứng, lỗi màn hình xanh; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
      ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
      ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
      ("Tự động hoá", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động; Telegram bot cảnh báo"),
@@ -502,9 +508,9 @@ VARIANTS = {
             "nâng cấp và xử lý sự cố laptop, PC cho khách hàng. Ngắn hạn, tôi đặt mục tiêu nắm vững quy trình kỹ thuật "
             "– bảo hành của cửa hàng và các dòng sản phẩm đang kinh doanh; dài hạn, trở thành kỹ thuật viên vững tay "
             "nghề, tư vấn đúng nhu cầu khách và hỗ trợ được đồng nghiệp mới."),
-   projects=['ittools_kt_vi'],
+   projects=['bootreport_vi', 'ittools_kt_vi'],
    skills=[
-     ("Laptop &amp; Desktop", "Chẩn đoán và xử lý sự cố phần cứng, phần mềm; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Laptop &amp; Desktop", "Chẩn đoán và xử lý sự cố phần cứng, phần mềm; kiểm tra độ chai pin, SMART ổ cứng, lỗi màn hình xanh; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
      ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
      ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
      ("Công cụ", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động &middot; POS KiotViet, Microsoft Office"),
@@ -542,7 +548,7 @@ VARIANTS = {
             "hàng. Tôi mong muốn được làm việc lâu dài ở vị trí <b>kỹ thuật máy tính, hỗ trợ IT hoặc lập trình viên</b>, "
             "đóng góp ngay bằng kỹ năng xử lý sự cố, cài đặt hệ thống và lập trình, đồng thời được học hỏi để phát triển "
             "chuyên môn."),
-   projects=['bootreport_vi', 'rapphim_mini_vi', 'qrwallet_vi'],
+   projects=['bootreport_vi', 'phone5s_vi', 'qrwallet_vi'],
    skills=[
      ("Phần cứng", "Chẩn đoán, xử lý sự cố laptop, PC, máy in; cài đặt Windows, Linux, driver, phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
      ("Mạng &amp; máy chủ", "Mạng LAN, máy in mạng, DNS, tên miền &amp; SSL; quản trị máy chủ Linux / VPS, Docker"),
