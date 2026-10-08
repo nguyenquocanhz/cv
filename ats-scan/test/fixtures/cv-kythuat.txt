@@ -1,0 +1,58 @@
+Nguyễn Quốc Anh
+KỸ THUẬT VIÊN MÁY TÍNH · LAPTOP / DESKTOP · HỆ ĐIỀU HÀNH · MẠNG CƠ BẢN
+0397 215 747  ·  nguyenquocanh.dev@gmail.com  ·  Bình Tân, TP. Hồ Chí Minh
+github.com/nguyenquocanhz  ·  linkedin.com/in/nguyenquocanhz  ·  nguyenquocanh.io.vn
+TÓM TẮT
+Tôi tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy, xếp loại Xuất sắc (GPA 3.65/4.0), từng làm hỗ trợ kỹ thuật tại Công ty
+Cổ phần Máy tính Z1 — chẩn đoán và xử lý sự cố phần cứng, phần mềm, máy in, mạng — và có 3 năm tự quản trị hạ tầng máy
+chủ chạy thật với uptime 99%. Tôi cài đặt, khắc phục Windows và Linux, xử lý mã độc, và tự viết script PowerShell / Python để
+bớt việc lặp lại. Tôi mong được làm kỹ thuật viên tại một hệ thống bán lẻ máy tính, làm việc trực tiếp với khách hàng và tiếp xúc
+nhiều sản phẩm công nghệ mới.
+KINH NGHIỆM
+Technical Support Associate — Công ty Cổ phần Máy tính Z1
+09/2025 – 10/2025
+Hỗ trợ người dùng nội bộ: chẩn đoán và xử lý sự cố phần cứng, phần mềm, máy in và mạng trên hệ thống máy tính của công
+ty, giảm thời gian gián đoạn vận hành.
+Vận hành hệ thống POS KiotViet; quản lý sản phẩm trên sàn thương mại điện tử; quản trị và tối ưu hiệu năng website công ty.
+Ứng dụng công cụ AI tự động hoá quy trình nội bộ.
+Freelance System Administrator & Developer — hạ tầng máy chủ và hệ thống bán hàng tự động
+07/2023 – nay
+Quản trị hạ tầng máy chủ nhiều vùng cho khách hàng, uptime 99%; trực tiếp xử lý sự cố vận hành và khôi phục dịch vụ.
+Cài đặt, cấu hình và bảo mật Linux server; quản lý DNS, tên miền, chứng chỉ SSL; sao lưu và phục hồi dữ liệu.
+Hỗ trợ khách hàng sau bàn giao: tiếp nhận lỗi người dùng báo, phân loại mức độ ưu tiên và xử lý dứt điểm; hệ thống phục vụ
+200 khách hàng với 50 đơn hàng mỗi tháng.
+DỰ ÁN TIÊU BIỂU
+BootReport-Health — công cụ kiểm tra sức khoẻ laptop, mã nguồn mở
+10/2026
+Chạy bằng một dòng lệnh: đọc thời gian khởi động, độ chai pin và chu kỳ sạc, SMART ổ SSD/NVMe, RAM, lịch sử lỗi màn
+hình xanh (BSOD) rồi xuất báo cáo HTML song ngữ Việt – Anh.
+Bản PowerShell cho Windows và bản shell cho Linux, macOS, Android (Termux); chỉ đọc, không sửa hệ thống.
+ github.com/nguyenquocanhz/BootReport-Health
+Bộ công cụ kỹ thuật tự viết — PowerShell, Python, Node.js, mã nguồn mở
+2025 – 2026
+TJprojMain_Remove (PowerShell) — script dọn mã độc đào coin trên máy trạm Windows.
+pulse (Node.js) — giám sát uptime dịch vụ: kiểm tra định kỳ, ghi nhận sự cố và hiển thị trang trạng thái.
+sshvault (Python) — kho lưu khoá SSH và thông tin máy chủ, mã hoá AES-256-GCM khi lưu trữ.
+DomainGateway (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.
+KỸ NĂNG
+Phần cứng
+Chẩn đoán và xử lý sự cố laptop & desktop; kiểm tra độ chai pin, SMART ổ cứng, lỗi màn hình xanh; nắm
+cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe,
+nguồn; máy in, NAS
+Hệ điều hành
+Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý
+mã độc; sao lưu & phục hồi dữ liệu
+Mạng cơ bản
+Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền & SSL, SSH, web server (Nginx / Apache)
+Tự động hoá
+PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động; Telegram bot cảnh báo
+Nghiệp vụ
+POS KiotViet, quản lý sản phẩm trên sàn TMĐT, Microsoft Office, Canva · lập trình Java, C#, PHP,
+JavaScript
+Tác phong
+Quen xử lý sự cố gấp khi hệ thống của khách đang chạy; chủ động báo cáo, bàn giao đúng hạn; sẵn sàng
+xoay ca
+HỌC VẤN & CHỨNG CHỈ
+Cao đẳng Kinh tế – Kỹ thuật TP.HCM (HOTEC) — Công nghệ thông tin (Ứng dụng phần mềm)
+08/2023 – 03/2026
+Hệ chính quy  ·  GPA 3.65 / 4.0  ·  Xếp loại tốt nghiệp Xuất sắc  ·  TOEIC 575 (07/2024) — đọc hiểu tài liệu kỹ thuật tiếng Anh

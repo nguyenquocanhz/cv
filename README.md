@@ -105,6 +105,13 @@ Chỉ dùng thư viện chuẩn, chạy hoàn toàn cục bộ: không truy cậ
 nhập vào trang tuyển dụng nào, không tự nộp hồ sơ. Việc nộp vẫn do người làm, từng
 tin một.
 
+## ats-scan — công cụ quét CV theo tin tuyển dụng
+
+Thư mục `ats-scan/` là một web app mã nguồn mở chạy hoàn toàn trong trình duyệt: dán tin
+tuyển dụng rồi tải CV lên để chấm mức khớp, soi các lỗi khiến phần mềm lọc hồ sơ đọc sai,
+chấm chất lượng tin tuyển dụng, kèm mẫu CV chuẩn ATS và mẹo viết CV. CV không rời khỏi máy
+người dùng. Chi tiết xem `ats-scan/README.md`.
+
 ## on-tap — giáo trình ôn tập Kỹ thuật viên máy tính
 
 Thư mục `on-tap/` chứa giáo trình PDF 56 trang để ôn phỏng vấn vị trí kỹ thuật viên phần cứng: cấu trúc máy tính, CPU & socket, RAM, ổ cứng, chuẩn kết nối, mạng cơ bản. Cách dựng lại xem `on-tap/README.md`.

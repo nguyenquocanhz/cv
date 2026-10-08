@@ -1,0 +1,11 @@
+{
+  "name": "ats-scan",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ATS Scan — công cụ quét CV và chấm điểm tin tuyển dụng, chạy hoàn toàn trong trình duyệt",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
