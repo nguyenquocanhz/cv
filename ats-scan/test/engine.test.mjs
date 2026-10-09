@@ -45,6 +45,43 @@ test('yêu cầu bắt buộc nặng hơn mục ưu tiên', () => {
   assert.equal(s.get('docker').weight, 1);
 });
 
+test('yêu cầu viết chung dòng với tiêu đề vẫn được tính', () => {
+  // Tin viết gọn hay gộp một dòng; bỏ cả dòng thì mất sạch kỹ năng.
+  for (const [jd, wNeeded] of [['Yêu cầu: Java, SQL, Docker', 3], ['🎯 YÊU CẦU: Java, SQL, Docker', 3]]) {
+    const s = findSkills(splitSections(jd));
+    for (const k of ['java', 'sql', 'docker']) {
+      assert.ok(s.has(k), `${jd} → thiếu ${k}`);
+      assert.equal(s.get(k).weight, wNeeded, `${jd} → ${k} sai trọng số`);
+    }
+  }
+  const s2 = findSkills(splitSections('Ưu tiên có kinh nghiệm Java'));
+  assert.ok(s2.has('java'));
+  assert.equal(s2.get('java').weight, 1, 'nằm ở mục ưu tiên thì phải nhẹ hơn');
+});
+
+test('cụm "là một lợi thế" giữa câu chỉ hạ trọng số dòng đó', () => {
+  const secs = splitSections(`YÊU CẦU
+Thành thạo Java
+Biết sử dụng SQL là một lợi thế
+Nắm vững Docker`);
+  const s = findSkills(secs);
+  assert.equal(s.get('java').weight, 3);
+  assert.equal(s.get('sql').weight, 1, 'chỉ là ưu tiên');
+  assert.ok(s.has('sql'), 'nhưng vẫn phải được tính, không bị nuốt cả dòng');
+  assert.equal(s.get('docker').weight, 3, 'dòng sau không được dính trọng số đã hạ');
+});
+
+test('dòng chỉ có mỗi tiêu đề không sinh nội dung thừa', () => {
+  const secs = splitSections('YÊU CẦU\nThành thạo Java');
+  assert.equal(secs.length, 1, 'chỉ dòng nội dung được giữ');
+  assert.equal(secs[0].line, 'Thành thạo Java');
+});
+
+test('yêu cầu gộp dòng ở mục Quyền lợi vẫn không được tính', () => {
+  const s = findSkills(splitSections('Quyền lợi: được đào tạo Python và cấp laptop'));
+  assert.ok(!s.has('python'), 'mục Quyền lợi không phải yêu cầu');
+});
+
 // ── Khớp kỹ năng ─────────────────────────────────────────────
 test('cụm dài khớp trước cụm ngắn', () => {
   const s = findSkillsInText('Lập trình React Native cho iOS');

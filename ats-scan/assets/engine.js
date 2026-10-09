@@ -52,21 +52,56 @@ const SECTION_RULES = [
   { w: 2, re: /(mo ta cong viec|job description|trach nhiem|responsibilit|nhiem vu|cong viec chinh|what you will do|key duties|chi tiet cong viec)/ },
 ];
 
+/** Cụm báo "chỉ là ưu tiên" nằm giữa câu, rất hay gặp trong tin tiếng Việt. */
+const NICE_INLINE = /(la mot loi the|la loi the|la mot diem cong|la diem cong|uu tien|is a plus|is an advantage|nice to have|preferred)/;
+
+const row = (line, w) => ({ line, low: strip(line), acc: line.toLowerCase(), w });
+
+/**
+ * Phần còn lại của dòng sau cụm tiêu đề, hoặc null nếu dòng chỉ có mỗi tiêu đề.
+ *
+ * Tin viết gọn hay gộp vào một dòng: "Yêu cầu: Java, SQL, Docker" hay
+ * "Ưu tiên có kinh nghiệm Java". Bỏ cả dòng thì mất sạch kỹ năng, nên phải giữ phần đuôi.
+ *
+ * Cắt theo SỐ TỪ chứ không theo chỉ số ký tự: strip() bỏ dấu và gộp khoảng trắng nên
+ * chỉ số ký tự lệch so với chuỗi gốc, còn số từ thì giữ nguyên.
+ */
+function headingTail(line, low, re) {
+  const m = re.exec(low);
+  if (!m) return undefined;
+  // Trước cụm tiêu đề chỉ được có ký hiệu (biểu tượng cảm xúc, dấu gạch), không được có chữ
+  if (/[\p{L}\p{N}]/u.test(low.slice(0, m.index))) return undefined;
+  const tail = low.slice(m.index + m[0].length).replace(/^[\s:：.,–—|-]+/, '');
+  const n = tail.split(/\s+/).filter(Boolean).length;
+  if (!n) return null;
+  const words = line.trim().split(/\s+/);
+  return words.slice(words.length - n).join(' ');
+}
+
 /** Gắn trọng số cho từng dòng JD theo tiêu đề mục gần nhất phía trên. */
 export function splitSections(text) {
-  const lines = String(text || '').split(/\r?\n/);
   const out = [];
   let w = 2; // chưa gặp tiêu đề nào: coi như phần mô tả
-  for (const raw of lines) {
+  for (const raw of String(text || '').split(/\r?\n/)) {
     const line = raw.trim();
     if (!line) continue;
     const low = strip(line);
     // Tiêu đề mục: dòng ngắn, không phải câu kể
     if (low.length <= 70) {
-      const hit = SECTION_RULES.find((r) => r.re.test(low));
-      if (hit) { w = hit.w; continue; }
+      let found = false;
+      for (const r of SECTION_RULES) {
+        const tail = headingTail(line, low, r.re);
+        if (tail === undefined) continue;
+        w = r.w;
+        found = true;
+        if (tail && r.w > 0) out.push(row(tail, r.w));
+        break;
+      }
+      if (found) continue;
     }
-    out.push({ line, low, acc: line.toLowerCase(), w });
+    // "Biết SQL là một lợi thế" nằm trong mục Yêu cầu nhưng vẫn chỉ là ưu tiên:
+    // cụm đánh dấu nằm giữa câu thì hạ trọng số của riêng dòng đó.
+    out.push(row(line, NICE_INLINE.test(low) ? Math.min(w, 1) : w));
   }
   return out;
 }

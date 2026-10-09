@@ -57,6 +57,9 @@ Tiếng Việt bỏ dấu sinh ra rất nhiều từ trùng nhau, và đó là n
 - pdf.js trả tiêu đề in giãn chữ thành `"T Ó M T Ắ T"`, nên khâu nhận diện mục so khớp
   thêm một lần sau khi bỏ hết khoảng trắng.
 
+Tin viết gọn còn hay gộp yêu cầu vào chung dòng tiêu đề (`Yêu cầu: Java, SQL, Docker`),
+nên khi nhận ra tiêu đề thì phần đuôi của dòng vẫn phải được giữ lại.
+
 Bộ test khoá lại toàn bộ các trường hợp trên.
 
 ## Đưa lên mạng
@@ -74,7 +77,7 @@ người dùng phải tin. Toàn bộ app đã được chạy thử dưới đ�
 
 ```bash
 npm install                      # thư viện docx, dùng để sinh mẫu CV
-node --test ats-scan/test/       # 27 test cho bộ máy chấm điểm
+cd ats-scan && node --test       # 30 test cho bộ máy chấm điểm (hoặc: npm test)
 node ats-scan/make_templates.js  # sinh lại templates/*.docx và *.md
 ```
 

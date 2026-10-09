@@ -6,6 +6,6 @@
   "description": "ATS Scan — công cụ quét CV và chấm điểm tin tuyển dụng, chạy hoàn toàn trong trình duyệt",
   "license": "MIT",
   "scripts": {
-    "test": "node --test test/"
+    "test": "node --test"
   }
 }
