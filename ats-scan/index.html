@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATS Scan — quét CV, chấm tin tuyển dụng</title>
+<meta name="description" content="Công cụ mã nguồn mở quét CV theo tin tuyển dụng, phân tích lỗi khiến máy lọc hồ sơ không đọc được, và chấm chất lượng tin tuyển dụng. Chạy hoàn toàn trong trình duyệt, CV không rời khỏi máy bạn.">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🔍</text></svg>">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>
+        <path d="M9 13h3"/><path d="M9 17h5"/>
+      </svg>
+      <div>ATS Scan<small data-t="tagline"></small></div>
+    </div>
+    <div class="spacer"></div>
+    <span class="chip-priv">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span data-t="privacyShort"></span>
+    </span>
+    <button class="icon-btn" id="langBtn" data-t="lang"></button>
+    <button class="icon-btn" id="themeBtn" title="" aria-label="">◐</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="aud-bar">
+    <span data-t="audience"></span>
+    <div class="seg" id="audSeg" role="group">
+      <button data-aud="candidate" data-t="aud_candidate" aria-pressed="true"></button>
+      <button data-aud="student" data-t="aud_student" aria-pressed="false"></button>
+      <button data-aud="hr" data-t="aud_hr" aria-pressed="false"></button>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist">
+    <button role="tab" data-tab="scan" data-t="tab_scan" aria-selected="true"></button>
+    <button role="tab" data-tab="cv"   data-t="tab_cv"   aria-selected="false"></button>
+    <button role="tab" data-tab="jd"   data-t="tab_jd"   aria-selected="false"></button>
+    <button role="tab" data-tab="tpl"  data-t="tab_tpl"  aria-selected="false"></button>
+    <button role="tab" data-tab="tips" data-t="tab_tips" aria-selected="false"></button>
+  </nav>
+</div>
+
+<main class="wrap">
+
+  <!-- ── Quét CV theo tin ─────────────────────────────── -->
+  <section class="panel" id="p-scan" role="tabpanel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="field-head"><label for="jd1" data-t="jdLabel"></label></div>
+        <p class="hint" style="margin-bottom:7px" data-t="jdHint"></p>
+        <textarea id="jd1" spellcheck="false"></textarea>
+      </div>
+      <div class="card">
+        <div class="field-head"><label id="cvLbl1" data-t="cvLabel"></label></div>
+        <div class="drop" id="drop1" tabindex="0" role="button">
+          <p data-t="drop" id="dropTxt1"></p>
+          <span data-t="orPick"></span>
+        </div>
+        <input type="file" id="file1" accept=".pdf,.docx,.txt,.md" hidden>
+        <ul class="files" id="list1"></ul>
+        <details style="margin-top:10px">
+          <summary class="hint" style="cursor:pointer" data-t="orPaste"></summary>
+          <textarea id="cvText1" spellcheck="false" style="min-height:140px;margin-top:8px"></textarea>
+        </details>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="runScan" data-t="run"></button>
+      <button class="btn btn-2" id="sampleScan" data-t="sample"></button>
+      <button class="btn btn-2" id="clearScan" data-t="clear"></button>
+      <span class="msg" id="msgScan"></span>
+    </div>
+    <div class="result" id="resScan"></div>
+  </section>
+
+  <!-- ── Phân tích CV ─────────────────────────────────── -->
+  <section class="panel" id="p-cv" role="tabpanel" hidden>
+    <div class="card">
+      <div class="field-head"><label data-t="cvLabel"></label></div>
+      <div class="drop" id="drop2" tabindex="0" role="button">
+        <p data-t="drop"></p><span data-t="orPick"></span>
+      </div>
+      <input type="file" id="file2" accept=".pdf,.docx,.txt,.md" hidden>
+      <ul class="files" id="list2"></ul>
+      <details style="margin-top:10px">
+        <summary class="hint" style="cursor:pointer" data-t="orPaste"></summary>
+        <textarea id="cvText2" spellcheck="false" style="min-height:140px;margin-top:8px"></textarea>
+      </details>
+    </div>
+    <div class="actions">
+      <button class="btn" id="runCV" data-t="runCV"></button>
+      <button class="btn btn-2" id="clearCV" data-t="clear"></button>
+      <span class="msg" id="msgCV"></span>
+    </div>
+    <div class="result" id="resCV"></div>
+  </section>
+
+  <!-- ── Chấm tin tuyển dụng ──────────────────────────── -->
+  <section class="panel" id="p-jd" role="tabpanel" hidden>
+    <div class="card">
+      <div class="field-head"><label for="jd2" data-t="jdLabel"></label></div>
+      <p class="hint" style="margin-bottom:7px" data-t="jdScoreHint"></p>
+      <textarea id="jd2" spellcheck="false"></textarea>
+    </div>
+    <div class="actions">
+      <button class="btn" id="runJD" data-t="run"></button>
+      <button class="btn btn-2" id="sampleJD" data-t="sample"></button>
+      <button class="btn btn-2" id="clearJD" data-t="clear"></button>
+      <span class="msg" id="msgJD"></span>
+    </div>
+    <div class="result" id="resJD"></div>
+  </section>
+
+  <!-- ── Mẫu CV ───────────────────────────────────────── -->
+  <section class="panel" id="p-tpl" role="tabpanel" hidden>
+    <h2 style="font-size:17px;margin-bottom:4px" data-t="tplTitle"></h2>
+    <p class="hint" style="margin-bottom:14px" data-t="tplHint"></p>
+    <div class="tpl-grid" id="tplGrid"></div>
+  </section>
+
+  <!-- ── Mẹo ──────────────────────────────────────────── -->
+  <section class="panel" id="p-tips" role="tabpanel" hidden>
+    <h2 style="font-size:17px;margin-bottom:14px" data-t="tipsTitle"></h2>
+    <div class="tips" id="tipsBox"></div>
+  </section>
+
+  <p class="note" id="disclaimer" style="margin-top:22px" data-t="disclaimer"></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-t="privacy"></span> ·
+    <span data-t="footerFoss"></span> ·
+    <a href="https://github.com/nguyenquocanhz" rel="noopener">github.com/nguyenquocanhz</a>
+  </div>
+</footer>
+
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>

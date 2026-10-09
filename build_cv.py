@@ -7,7 +7,8 @@ Kết quả: <slug>.html + <slug>.pdf cho mỗi biến thể trong VARIANTS.
 
 Sửa nội dung ở phần DỮ LIỆU bên dưới, chạy lại là ra bộ CV mới.
 """
-import io, os, subprocess, sys
+import html, io, json, os, subprocess, sys, tempfile
+from html.parser import HTMLParser
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -136,6 +137,24 @@ EXP_CDS_VI = [
     ]),
 ]
 
+# Bản kỹ thuật máy tính: Z1 là kinh nghiệm sát nhất nên đứng đầu (xếp theo ngày bắt đầu);
+# freelance kể theo góc vận hành và hỗ trợ khách hàng, bỏ bớt phần lập trình.
+EXP_KT_VI = [
+    dict(title="Technical Support Associate", org="— Công ty Cổ phần Máy tính Z1",
+         date="09/2025 – 10/2025", bullets=[
+        "Hỗ trợ người dùng nội bộ: chẩn đoán và xử lý sự cố <b>phần cứng, phần mềm, máy in và mạng</b> trên hệ thống máy tính của công ty, giảm thời gian gián đoạn vận hành.",
+        "Vận hành hệ thống <b>POS KiotViet</b>; quản lý sản phẩm trên sàn thương mại điện tử; quản trị và tối ưu hiệu năng website công ty.",
+        "Ứng dụng công cụ AI tự động hoá quy trình nội bộ.",
+    ]),
+    dict(title="Freelance System Administrator &amp; Developer",
+         org="— hạ tầng máy chủ và hệ thống bán hàng tự động",
+         date="07/2023 – nay", bullets=[
+        f"Quản trị hạ tầng máy chủ nhiều vùng cho khách hàng, uptime <b>{UPTIME}</b>; trực tiếp xử lý sự cố vận hành và khôi phục dịch vụ.",
+        "Cài đặt, cấu hình và bảo mật <b>Linux server</b>; quản lý <b>DNS</b>, tên miền, chứng chỉ SSL; <b>sao lưu và phục hồi</b> dữ liệu.",
+        f"<b>Hỗ trợ khách hàng sau bàn giao</b>: tiếp nhận lỗi người dùng báo, phân loại mức độ ưu tiên và xử lý dứt điểm; hệ thống phục vụ <b>{USERS} khách hàng</b> với <b>{ORDERS} đơn hàng</b> mỗi tháng.",
+    ]),
+]
+
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
     "Tối ưu hiệu năng bằng <b>Caffeine cache</b> giảm số lần gọi API ngoài; <b>Spring Actuator</b> cho health check; <b>Bean Validation</b> kiểm soát đầu vào; có unit test cho tầng web.",
@@ -254,6 +273,25 @@ PROJ = {
                   date="07/2024 – 08/2024", bullets=[
     "Ứng dụng desktop <b>C# / SQL Server</b> theo kiến trúc <b>3 lớp</b>; tự thiết kế database schema, phân chia công việc và review code cho nhóm 5 người.",
  ]),
+
+ 'ittools_kt_vi': dict(title="Bộ công cụ kỹ thuật tự viết", org="— PowerShell, Python, Node.js, mã nguồn mở",
+                       date="2025 – 2026", bullets=[
+    "<b>TJprojMain_Remove</b> (PowerShell) — script dọn mã độc đào coin trên máy trạm Windows.",
+    "<b>pulse</b> (Node.js) — giám sát uptime dịch vụ: kiểm tra định kỳ, ghi nhận sự cố và hiển thị trang trạng thái.",
+    "<b>sshvault</b> (Python) — kho lưu khoá SSH và thông tin máy chủ, mã hoá <b>AES-256-GCM</b> khi lưu trữ.",
+    "<b>DomainGateway</b> (Python) — theo dõi ngày hết hạn của toàn bộ tên miền trải trên nhiều nhà cung cấp.",
+ ]),
+
+ 'bootreport_vi': dict(title="BootReport-Health", org="— công cụ kiểm tra sức khoẻ laptop, mã nguồn mở",
+                       date="10/2026", bullets=[
+    "Chạy bằng một dòng lệnh: đọc thời gian khởi động, <b>độ chai pin</b> và chu kỳ sạc, <b>SMART ổ SSD/NVMe</b>, RAM, lịch sử lỗi <b>màn hình xanh (BSOD)</b> rồi xuất báo cáo HTML song ngữ Việt – Anh.",
+    "Bản <b>PowerShell</b> cho Windows và bản <b>shell</b> cho Linux, macOS, Android (Termux); chỉ đọc, không sửa hệ thống. &nbsp;github.com/nguyenquocanhz/BootReport-Health",
+ ]),
+
+ 'phone5s_vi': dict(title="Phone5s", org="— website cho cửa hàng điện thoại, dự án cá nhân",
+                    date="2026", bullets=[
+    "Tự thiết kế và lập trình trọn bộ: giao diện <b>Next.js</b>, backend <b>Spring Boot</b> (REST API). &nbsp;phone5s.shopmanguon.com",
+ ]),
 }
 
 EDU_VI = dict(title="Cao đẳng Kinh tế – Kỹ thuật TP.HCM (HOTEC)", org="— Công nghệ thông tin (Ứng dụng phần mềm)",
@@ -267,6 +305,9 @@ L_VI = dict(summary="Tóm tắt", exp="Kinh nghiệm", proj="Dự án tiêu bi�
             skills="Kỹ năng", edu="Học vấn &amp; chứng chỉ", loc="Bình Tân, TP. Hồ Chí Minh")
 L_EN = dict(summary="Summary", exp="Experience", proj="Selected projects",
             skills="Skills", edu="Education &amp; certification", loc="Binh Tan, Ho Chi Minh City")
+# CV kiểu Việt Nam cho nhà tuyển dụng bán lẻ: tiêu đề mục theo cách HR quen đọc.
+L_RETAIL_VI = dict(L_VI, summary="Mục tiêu nghề nghiệp", exp="Kinh nghiệm làm việc",
+                   proj="Dự án cá nhân", extra="Thông tin thêm")
 
 VARIANTS = {
  # ---------------------------------------------------------------- Java (VI)
@@ -427,6 +468,100 @@ VARIANTS = {
      ("Lập trình &amp; nghiệp vụ", "Java, C#, PHP, JavaScript / TypeScript — đủ để đọc hiểu và đánh giá sản phẩm của đơn vị phát triển &middot; POS KiotViet, Microsoft Office"),
    ]),
 
+ # ------------------------------ Kỹ thuật máy tính — cửa hàng bán lẻ máy tính (VI)
+ # JD gate bằng bằng cấp và kiến thức laptop / desktop / mạng, không hỏi lập trình:
+ # đưa bằng cấp và Z1 lên đầu, phần code chỉ còn là công cụ hỗ trợ vận hành.
+ "CV-NguyenQuocAnh-KyThuatMayTinh": dict(
+   lang=L_VI, exp=EXP_KT_VI, edu=EDU_VI,
+   role="Kỹ thuật viên máy tính &middot; Laptop / Desktop &middot; Hệ điều hành &middot; Mạng cơ bản",
+   summary=("Tôi tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy, xếp loại <b>Xuất sắc</b> (GPA 3.65/4.0), "
+            "từng làm hỗ trợ kỹ thuật tại <b>Công ty Cổ phần Máy tính Z1</b> — chẩn đoán và xử lý sự cố phần cứng, "
+            "phần mềm, máy in, mạng — và có 3 năm tự quản trị hạ tầng máy chủ chạy thật với uptime 99%. Tôi cài đặt, "
+            "khắc phục <b>Windows</b> và <b>Linux</b>, xử lý mã độc, và tự viết script <b>PowerShell / Python</b> để "
+            "bớt việc lặp lại. Tôi mong được làm kỹ thuật viên tại một hệ thống bán lẻ máy tính, làm việc trực tiếp "
+            "với khách hàng và tiếp xúc nhiều sản phẩm công nghệ mới."),
+   projects=['bootreport_vi', 'ittools_kt_vi'],
+   skills=[
+     ("Phần cứng", "Chẩn đoán và xử lý sự cố laptop &amp; desktop; kiểm tra độ chai pin, SMART ổ cứng, lỗi màn hình xanh; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
+     ("Tự động hoá", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động; Telegram bot cảnh báo"),
+     ("Nghiệp vụ", "POS KiotViet, quản lý sản phẩm trên sàn TMĐT, Microsoft Office, Canva &middot; lập trình Java, C#, PHP, JavaScript"),
+     ("Tác phong", "Quen xử lý sự cố gấp khi hệ thống của khách đang chạy; chủ động báo cáo, bàn giao đúng hạn; sẵn sàng xoay ca"),
+   ]),
+
+ # ----------------------------- MemoryZone — Kỹ thuật máy tính, CV kiểu Việt Nam
+ # HR bán lẻ lọc theo năm sinh, giới tính, bằng cấp trước khi đọc kinh nghiệm: đưa
+ # thông tin cá nhân lên đầu, học vấn trước kinh nghiệm, mỗi yêu cầu của JD có một dòng tương ứng.
+ "CV-NguyenQuocAnh-MemoryZone": dict(
+   lang=L_RETAIL_VI, edu=EDU_VI,
+   exp=[dict(EXP_KT_VI[0], title="Nhân viên hỗ trợ kỹ thuật"),
+        dict(EXP_KT_VI[1], title="Quản trị hệ thống &amp; phát triển phần mềm (tự do)")],
+   order=["summary", "edu", "exp", "skills", "proj", "extra"],
+   role="Ứng tuyển vị trí: Kỹ thuật máy tính &middot; MemoryZone",
+   contact=("<b>Năm sinh:</b> 2003 &nbsp;&middot;&nbsp; <b>Giới tính:</b> Nam &nbsp;&middot;&nbsp; "
+            "<b>Điện thoại:</b> 0397 215 747 &nbsp;&middot;&nbsp; <b>Email:</b> nguyenquocanh.dev@gmail.com<br>"
+            "<b>Địa chỉ:</b> Bình Tân, TP. Hồ Chí Minh &nbsp;&middot;&nbsp; github.com/nguyenquocanhz "
+            "&nbsp;&middot;&nbsp; nguyenquocanh.io.vn"),
+   summary=("Tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy loại <b>Xuất sắc</b>, từng làm hỗ trợ kỹ thuật "
+            "tại công ty máy tính, tôi mong muốn trở thành <b>kỹ thuật viên tại MemoryZone</b>: kiểm tra, cài đặt, "
+            "nâng cấp và xử lý sự cố laptop, PC cho khách hàng. Ngắn hạn, tôi đặt mục tiêu nắm vững quy trình kỹ thuật "
+            "– bảo hành của cửa hàng và các dòng sản phẩm đang kinh doanh; dài hạn, trở thành kỹ thuật viên vững tay "
+            "nghề, tư vấn đúng nhu cầu khách và hỗ trợ được đồng nghiệp mới."),
+   projects=['bootreport_vi', 'ittools_kt_vi'],
+   skills=[
+     ("Laptop &amp; Desktop", "Chẩn đoán và xử lý sự cố phần cứng, phần mềm; kiểm tra độ chai pin, SMART ổ cứng, lỗi màn hình xanh; nắm cấu tạo và chuẩn tương thích linh kiện — CPU, mainboard, RAM DDR4 / DDR5, SSD SATA / NVMe, nguồn; máy in, NAS"),
+     ("Hệ điều hành", "Cài đặt, khắc phục Windows / Windows Server và Linux (Ubuntu / Debian); cài driver và phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng cơ bản", "Mạng LAN, TCP/IP, máy in mạng, DNS, tên miền &amp; SSL, SSH, web server (Nginx / Apache)"),
+     ("Công cụ", "PowerShell, Python, Bash — script cài đặt, dọn dẹp, giám sát tự động &middot; POS KiotViet, Microsoft Office"),
+     ("Kỹ năng mềm", "Hỗ trợ và giao tiếp với khách hàng; chịu áp lực khi xử lý sự cố gấp; làm việc nhóm — trưởng nhóm 5 người ở hai dự án nhóm"),
+   ],
+   extra=[
+     "Có thể đi làm sau <b>1 tuần</b> kể từ khi nhận việc.",
+     "Sẵn sàng làm <b>xoay ca, 6 ngày/tuần</b> theo lịch của cửa hàng.",
+   ]),
+
+ # ------------------------------------- CV tổng quát (VI) — người thân gửi giúp
+ # Không biết trước công ty hay vị trí: nêu ba hướng việc làm được, kỹ năng trải đều
+ # phần cứng – mạng – lập trình – văn phòng, bớt thuật ngữ ở phần mở đầu cho người đọc không chuyên.
+ "CV-NguyenQuocAnh-TongQuat": dict(
+   docx=True,  # người thân gửi giúp, cần bản Word để tự sửa
+   lang=dict(L_RETAIL_VI, proj="Dự án tiêu biểu"),
+   edu=dict(EDU_VI, sub="Hệ <b>chính quy</b> &nbsp;&middot;&nbsp; Danh hiệu <b>Kỹ sư thực hành</b> &nbsp;&middot;&nbsp; "
+                       "GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; Tốt nghiệp loại <b>Xuất sắc</b>"),
+   exp=[dict(EXP_CDS_VI[1], title="Nhân viên hỗ trợ kỹ thuật"),
+        dict(title="Lập trình viên &amp; quản trị hệ thống", org="— cộng tác viên tự do, làm việc từ xa",
+             date="07/2023 – nay", bullets=[
+          f"Xây dựng nền tảng bán hàng bằng <b>PHP 8, MySQL, Bootstrap</b> cho khách hàng, phục vụ <b>{USERS} khách hàng</b> với <b>{ORDERS} đơn hàng</b> mỗi tháng; tích hợp cổng thanh toán, đối soát giao dịch realtime.",
+          "Xây dựng hệ thống <b>tự động cấp phát dịch vụ</b> ngay sau khi khách thanh toán, loại bỏ thao tác thủ công.",
+          f"Quản trị máy chủ <b>Linux</b> nhiều vùng, uptime <b>{UPTIME}</b>; xử lý sự cố, sao lưu và phục hồi dữ liệu.",
+          "Tiếp nhận yêu cầu và lỗi từ khách hàng, phân loại mức độ ưu tiên và xử lý dứt điểm.",
+        ])],
+   order=["summary", "edu", "exp", "skills", "proj", "extra"],
+   role="Vị trí mong muốn: Kỹ thuật máy tính &middot; Hỗ trợ IT &middot; Lập trình viên",
+   contact=("<b>Ngày sinh:</b> 28/07/2003 &nbsp;&middot;&nbsp; <b>Giới tính:</b> Nam &nbsp;&middot;&nbsp; "
+            "<b>Điện thoại:</b> 0397 215 747 &nbsp;&middot;&nbsp; <b>Email:</b> nguyenquocanh.dev@gmail.com<br>"
+            "<b>Địa chỉ:</b> Bình Tân, TP. Hồ Chí Minh &nbsp;&middot;&nbsp; github.com/nguyenquocanhz "
+            "&nbsp;&middot;&nbsp; nguyenquocanh.io.vn"),
+   summary=("Tốt nghiệp Cao đẳng Công nghệ thông tin hệ chính quy loại <b>Xuất sắc</b>, từng làm hỗ trợ kỹ thuật tại "
+            "công ty máy tính và có 3 năm làm cộng tác viên từ xa — viết phần mềm bán hàng, quản trị máy chủ cho khách "
+            "hàng. Tôi mong muốn được làm việc lâu dài ở vị trí <b>kỹ thuật máy tính, hỗ trợ IT hoặc lập trình viên</b>, "
+            "đóng góp ngay bằng kỹ năng xử lý sự cố, cài đặt hệ thống và lập trình, đồng thời được học hỏi để phát triển "
+            "chuyên môn."),
+   projects=['bootreport_vi', 'phone5s_vi', 'qrwallet_vi'],
+   skills=[
+     ("Phần cứng", "Chẩn đoán, xử lý sự cố laptop, PC, máy in; cài đặt Windows, Linux, driver, phần mềm; xử lý mã độc; sao lưu &amp; phục hồi dữ liệu"),
+     ("Mạng &amp; máy chủ", "Mạng LAN, máy in mạng, DNS, tên miền &amp; SSL; quản trị máy chủ Linux / VPS, Docker"),
+     ("Lập trình", "PHP, Java (Spring Boot), C#, JavaScript / TypeScript (React, Next.js), Python; MySQL, SQL Server; Git"),
+     ("Văn phòng", "Microsoft Office, POS KiotViet, quản lý sản phẩm trên sàn thương mại điện tử, Canva"),
+     ("Ngoại ngữ", "Tiếng Anh — TOEIC 575 (07/2024), đọc hiểu tài liệu kỹ thuật"),
+     ("Kỹ năng mềm", "Giao tiếp và hỗ trợ khách hàng; làm việc nhóm — trưởng nhóm 5 người ở hai dự án nhóm; tự quản lý tiến độ khi làm việc từ xa"),
+   ],
+   extra=[
+     "Có thể đi làm sau <b>1 tuần</b> kể từ khi nhận việc.",
+     "Sẵn sàng làm <b>toàn thời gian</b> tại TP. Hồ Chí Minh, có thể làm theo ca.",
+   ]),
+
  # ----------------------------------------- Fresher Backend (VI) — Node/TS/Python
  "CV-NguyenQuocAnh-Fresher-Backend": dict(
    lang=L_VI, exp=EXP_VI, edu=EDU_VI,
@@ -483,6 +618,9 @@ def entry_html(e):
     return "\n".join(out)
 
 
+ORDER = ["summary", "exp", "proj", "skills", "edu"]
+
+
 def build(slug, v):
     L = v["lang"]
     parts = [
@@ -492,25 +630,109 @@ def build(slug, v):
       '<header>',
       '  <div class="name">Nguyễn Quốc Anh</div>',
       f'  <div class="role">{v["role"]}</div>',
-      f'  <div class="contact">{CONTACT.format(loc=L["loc"])}</div>',
+      f'  <div class="contact">{v.get("contact") or CONTACT.format(loc=L["loc"])}</div>',
       '  <div class="rule-top"></div>',
       '</header>',
-      f'<h2>{L["summary"]}</h2>',
-      f'<p class="summary">{v["summary"]}</p>',
-      f'<h2>{L["exp"]}</h2>',
     ]
-    parts += [entry_html(e) for e in v["exp"]]
-    parts.append(f'<h2>{L["proj"]}</h2>')
-    parts += [entry_html(PROJ[k]) for k in v["projects"]]
-    parts.append(f'<h2>{L["skills"]}</h2>')
-    parts.append('<div class="skills">')
-    for k, val in v["skills"]:
-        parts.append(f'  <div class="skill-row"><div class="skill-key">{k}</div>'
-                     f'<div class="skill-val">{val}</div></div>')
-    parts.append('</div>')
-    parts.append(f'<h2>{L["edu"]}</h2>')
-    parts.append(entry_html(v["edu"]))
+    for sec in v.get("order", ORDER):
+        parts.append(f'<h2>{L[sec]}</h2>')
+        if sec == "summary":
+            parts.append(f'<p class="summary">{v["summary"]}</p>')
+        elif sec == "exp":
+            parts += [entry_html(e) for e in v["exp"]]
+        elif sec == "proj":
+            parts += [entry_html(PROJ[k]) for k in v["projects"]]
+        elif sec == "skills":
+            parts.append('<div class="skills">')
+            for k, val in v["skills"]:
+                parts.append(f'  <div class="skill-row"><div class="skill-key">{k}</div>'
+                             f'<div class="skill-val">{val}</div></div>')
+            parts.append('</div>')
+        elif sec == "edu":
+            parts.append(entry_html(v["edu"]))
+        elif sec == "extra":
+            parts.append('<ul class="extra">')
+            parts += [f'  <li>{x}</li>' for x in v["extra"]]
+            parts.append('</ul>')
     return "\n".join(parts)
+
+
+# ----------------------------------------------------------------------------
+# Bản DOCX sửa được (cho người không dùng code): cùng nội dung, dựng bằng cv_docx.js
+# ----------------------------------------------------------------------------
+class _Runs(HTMLParser):
+    """Chuỗi HTML nhỏ trong dữ liệu (<b>, <code>, <br>, &nbsp;…) → danh sách đoạn chữ."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.runs, self.bold, self.code = [], 0, 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ("b", "strong"):
+            self.bold += 1
+        elif tag == "code":
+            self.code += 1
+        elif tag == "br":
+            self.runs.append({"br": True})
+
+    def handle_endtag(self, tag):
+        if tag in ("b", "strong"):
+            self.bold -= 1
+        elif tag == "code":
+            self.code -= 1
+
+    def handle_data(self, data):
+        self.runs.append({"t": data, "b": self.bold > 0, "code": self.code > 0})
+
+
+def runs(s):
+    p = _Runs()
+    p.feed(s)
+    p.close()
+    return p.runs
+
+
+def doc_model(slug, v):
+    L = v["lang"]
+    entry = lambda e: dict(title=runs(e["title"]), org=runs(e["org"]), date=runs(e["date"]),
+                           bullets=[runs(b) for b in e.get("bullets", [])],
+                           sub=runs(e["sub"]) if e.get("sub") else None)
+    secs = []
+    for sec in v.get("order", ORDER):
+        title = html.unescape(L[sec])
+        if sec == "summary":
+            secs.append(dict(kind="text", title=title, runs=runs(v["summary"])))
+        elif sec == "exp":
+            secs.append(dict(kind="entries", title=title, items=[entry(e) for e in v["exp"]]))
+        elif sec == "proj":
+            secs.append(dict(kind="entries", title=title, items=[entry(PROJ[k]) for k in v["projects"]]))
+        elif sec == "edu":
+            secs.append(dict(kind="entries", title=title, items=[entry(v["edu"])]))
+        elif sec == "skills":
+            secs.append(dict(kind="skills", title=title, rows=[[runs(k), runs(val)] for k, val in v["skills"]]))
+        elif sec == "extra":
+            secs.append(dict(kind="list", title=title, items=[runs(x) for x in v["extra"]]))
+    return dict(name="Nguyễn Quốc Anh", role=runs(v["role"]),
+                contact=runs(v.get("contact") or CONTACT.format(loc=L["loc"])), sections=secs)
+
+
+def build_docx(slug, v):
+    """Ghi <slug>.docx qua Node; thiếu Node hoặc thư viện docx thì bỏ qua và báo."""
+    out = os.path.join(OUT_DIR, slug + ".docx")
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
+        json.dump(doc_model(slug, v), f, ensure_ascii=False)
+    try:
+        r = subprocess.run(["node", os.path.join(OUT_DIR, "cv_docx.js"), f.name, out],
+                           capture_output=True, text=True)
+    except FileNotFoundError:
+        print(f"    {slug}: bỏ qua DOCX (cần Node.js, rồi chạy npm install)")
+        return False
+    finally:
+        os.unlink(f.name)
+    if r.returncode != 0:
+        print(f"    {slug}: lỗi dựng DOCX — {r.stderr.strip()[:200]}")
+        return False
+    print(f"    {slug}.docx")
+    return True
 
 
 def main():
@@ -539,6 +761,8 @@ def main():
             print(f"{flag} {slug:34s} {pages} trang, hết nội dung ở {end:.0f}/842pt")
         except ImportError:
             print(f"    {slug}: đã tạo PDF (cài pymupdf để kiểm tra số trang)")
+        if v.get("docx"):
+            build_docx(slug, v)
     sys.exit(0 if ok else 1)
 
 
