@@ -59,6 +59,17 @@ Tiếng Việt bỏ dấu sinh ra rất nhiều từ trùng nhau, và đó là n
 
 Bộ test khoá lại toàn bộ các trường hợp trên.
 
+## Đưa lên mạng
+
+Trang tĩnh, không cần build. Trên Vercel: **Add New → Project**, chọn repo này, đặt
+**Root Directory** là `ats-scan`, Framework **Other**, để trống Build Command rồi Deploy.
+`vercel.json` lo phần còn lại. GitHub Pages hay Netlify cũng chạy được y hệt.
+
+`vercel.json` đặt một CSP khoá chặt, trong đó có `connect-src 'none'`. Nghĩa là trình
+duyệt **cấm trang gọi mạng**, kể cả khi mã nguồn sau này vô tình thêm một lệnh gọi:
+lời hứa "CV không rời khỏi máy" trở thành thứ trình duyệt tự kiểm, không phải thứ
+người dùng phải tin. Toàn bộ app đã được chạy thử dưới đúng CSP này.
+
 ## Phát triển
 
 ```bash

@@ -1,0 +1,6 @@
+# Chỉ đẩy phần chạy được lên web. Những thứ dưới đây là mã nguồn và dữ liệu test.
+test/
+make_templates.js
+package.json
+README.md
+node_modules/
