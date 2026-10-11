@@ -105,6 +105,27 @@ Chỉ dùng thư viện chuẩn, chạy hoàn toàn cục bộ: không truy cậ
 nhập vào trang tuyển dụng nào, không tự nộp hồ sơ. Việc nộp vẫn do người làm, từng
 tin một.
 
+## topcv — thu thập tin tuyển dụng rồi chấm điểm
+
+`topcv.py` lấy tin thực tập trên TopCV theo từ khoá rồi đẩy sang `jobagent.py` chấm điểm,
+biến một đống tin thành danh sách đã xếp hạng.
+
+```bash
+python topcv.py fetch --tu-khoa php,python,go,java --chi-tiet
+python topcv.py list
+python topcv.py nap     # đẩy sang jobs.json để theo dõi bằng jobagent
+```
+
+Công cụ **đọc `robots.txt` trước khi tải bất cứ gì** và bỏ qua mọi đường dẫn bị cấm —
+không có cờ nào tắt được. Nghỉ tối thiểu 3 giây giữa các lần tải, theo `Crawl-delay`
+nếu trang có nêu, User-Agent ghi rõ đây là công cụ gì, và dừng hẳn khi gặp 403 hoặc 429.
+
+Dữ liệu lấy từ khối `schema.org/JobPosting` dạng JSON-LD mà trang công bố cho máy đọc,
+ổn định hơn nhiều so với bám vào tên class CSS.
+
+Đây là công cụ cá nhân để tìm việc cho chính mình. Điều khoản sử dụng của TopCV mới là
+thứ quyết định bạn được làm gì; `robots.txt` chỉ là phần máy đọc được.
+
 ## ats-scan — công cụ quét CV theo tin tuyển dụng
 
 Thư mục `ats-scan/` là một web app mã nguồn mở chạy hoàn toàn trong trình duyệt: dán tin
