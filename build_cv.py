@@ -617,28 +617,29 @@ VARIANTS = {
      ("Principles", "OOP, SOLID, design patterns, layered architecture, MVVM, caching, Agile / Scrum"),
    ]),
 
- # ------------------------- AI Agent &amp; Automation (VI) — JD thiên AI / tự động hoá
- # JD liệt kê keyword rời (Python, Database, Docker, IoT, API, UI/UX, AI Agent, JS/TS,
- # Robot, Git, Web/App, n8n): mỗi keyword cần một dòng kỹ năng neo vào bằng chứng thật.
- # Ô vàng = chưa có dấu vết trong CV, chủ nhân CV tự điền mức độ rồi bỏ ô đi.
+ # ----------------------- Thực tập sinh AI Engineer (VI) — JD chatbot/RAG/automation
+ # JD muốn: Python, xử lý tài liệu, AI workflow & automation, service/API tích hợp AI,
+ # pipeline – retrieval – evaluation – monitoring, viết tài liệu kỹ thuật, phối hợp nhóm.
+ # Mỗi ý đó có một dòng kỹ năng neo vào việc đã làm thật. RAG và chatbot chưa có dấu vết
+ # nào trong hồ sơ nên để ô vàng, không tự nhận giúp.
  "CV-NguyenQuocAnh-AI-Automation": dict(
    lang=L_VI, exp=EXP_VI, edu=EDU_VI,
-   role="Fresher Developer &middot; AI Agent &amp; Automation &middot; Python / TypeScript &middot; API &amp; Database",
-   summary=("Tôi tốt nghiệp ngành Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy thật. "
-            "Việc tôi làm nhiều nhất là <b>biến thao tác thủ công thành quy trình tự chạy</b>: hệ thống tự cấp phát "
-            "dịch vụ ngay sau khi khách thanh toán, script <b>Python</b> giám sát hạ tầng, bot cảnh báo. Tôi thiết kế "
-            "<b>REST API</b> và cơ sở dữ liệu cho hệ thống nhiều client, và dùng <b>AI agent (Claude Code, "
-            "Antigravity)</b> hằng ngày như công cụ làm việc — viết prompt, giao việc, kiểm thử lại kết quả."),
-   projects=['atsscan_vi', 'rapphim_api_vi', 'ittools_auto_vi'],
+   role="Thực tập sinh AI Engineer &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Dữ liệu",
+   summary=("Tôi vừa tốt nghiệp Cao đẳng Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy "
+            "thật. Việc tôi làm nhiều nhất đúng là <b>automation</b>: hệ thống tự cấp phát dịch vụ sau thanh toán, "
+            "<b>pipeline Python</b> thu thập – chuẩn hoá – chấm điểm, công cụ bóc nội dung <b>tài liệu PDF / DOCX</b>, "
+            "hệ thống <b>giám sát</b> uptime tự cảnh báo. Tôi dùng <b>AI agent (Claude Code, Antigravity)</b> hằng ngày "
+            "— viết prompt, giao việc, kiểm thử lại kết quả — và mong được học <b>RAG, chatbot, LLM</b> trong sản phẩm thật."),
+   projects=['atsscan_vi', 'ittools_auto_vi', 'rapphim_api_vi'],
    skills=[
-     ("Ngôn ngữ", "<b>Python</b>, <b>JavaScript / TypeScript</b>, Java, PHP, SQL, Go, C++"),
-     ("AI Agent &amp; Prompt", "<b>Claude Code</b>, <b>Antigravity</b> — viết prompt, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1"),
-     ("Tự động hoá", "Hệ thống <b>cấp phát dịch vụ tự động</b> ngay sau thanh toán; script Python / PowerShell / Bash chạy theo lịch; webhook, cron, Telegram bot cảnh báo; <b>n8n</b> " + FILL.format("mức độ?")),
-     ("API", "Thiết kế <b>REST API</b> 32 endpoint, phiên bản hoá, tài liệu <b>OpenAPI 3.1 / Swagger</b> tự sinh, validation tại biên, caching; tích hợp cổng thanh toán và API bên thứ ba"),
-     ("Database &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn; <b>Cloudflare R2</b>"),
-     ("Web / App &amp; UI/UX", "<b>Next.js</b>, React, <b>Flutter</b>, React Native; <b>Spring Boot</b> (RESTful API), Servlet &amp; JSP, PHP MVC; giao diện responsive, thư viện component VietCodesUI (6 \u2605 GitHub)"),
-     ("Phần cứng &amp; IoT", "Đọc dữ liệu thiết bị bằng script (SMART, chu kỳ sạc pin, lỗi hệ thống) trên Windows, Linux, Android/Termux; mạng LAN, TCP/IP, Linux server; <b>robot</b> " + FILL.format("kinh nghiệm gì?")),
-     ("DevOps &amp; Git", "<b>Docker</b>, Docker Compose, <b>Git / GitHub</b> (223 repo), <b>Git Flow</b>, <b>GitLab CI/CD</b>, GitHub Actions, Linux server"),
+     ("Ngôn ngữ", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
+     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Antigravity</b> — viết <b>prompt</b>, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("đã làm gì chưa?")),
+     ("AI workflow &amp; Automation", "Hệ thống <b>cấp phát dịch vụ tự động</b> ngay sau thanh toán; script Python / PowerShell / Bash chạy theo lịch; webhook, cron, bot cảnh báo Telegram; <b>n8n</b> " + FILL.format("mức độ?")),
+     ("Pipeline &amp; xử lý tài liệu", "<b>Đọc và bóc nội dung PDF / DOCX</b> rồi chuẩn hoá về cấu trúc dùng được; <b>pipeline</b> thu thập → khử trùng lặp → chấm điểm; <b>31 test hồi quy</b> đo chất lượng bộ máy chấm (evaluation)"),
+     ("Service / API", "<b>REST API</b> 32 endpoint, <b>OpenAPI 3.1 / Swagger</b> tự sinh, validation tại biên, caching; tích hợp cổng thanh toán và API bên thứ ba vào website, <b>hệ thống quản lý khách hàng – đơn hàng (CRM)</b> tự xây"),
+     ("Dữ liệu &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn; Cloudflare R2"),
+     ("Giám sát &amp; DevOps", "<b>pulse</b> — giám sát hệ thống và uptime kèm trang trạng thái, cảnh báo; hạ tầng khách hàng uptime <b>99%</b> &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
+     ("Tài liệu &amp; phối hợp", "Viết <b>giáo trình kỹ thuật 56 trang</b> chuẩn IEEE Std 1063-2001, tài liệu API tự sinh &middot; <b>trưởng nhóm 5 người</b> ở hai dự án &middot; chủ động, <b>học hỏi</b> nhanh, quen <b>giải quyết vấn đề</b> thực tế"),
    ]),
 }
 
