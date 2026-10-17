@@ -662,7 +662,7 @@ VARIANTS = {
  # nào trong hồ sơ nên để ô vàng, không tự nhận giúp.
  "CV-NguyenQuocAnh-AI-Automation": dict(
    lang=L_VI, exp=EXP_VI, edu=EDU_VI,
-   order=["exp", "proj", "skills", "edu", "summary"],
+   order=["edu", "proj", "skills", "exp", "summary"],
    role="Thực tập sinh AI Engineer &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Dữ liệu",
    summary=("Tôi vừa tốt nghiệp Cao đẳng Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy "
             "thật. Việc tôi làm nhiều nhất đúng là <b>automation</b>: hệ thống tự cấp phát dịch vụ sau thanh toán, "
@@ -686,7 +686,7 @@ VARIANTS = {
  # lại được trong buổi phỏng vấn thay vì đọc một bản tiếng Anh không phải giọng mình.
  "CV-NguyenQuocAnh-EN-AI-Intern": dict(
    lang=L_EN, exp=EXP_EN_PLAIN, edu=EDU_EN_PLAIN,
-   order=["exp", "proj", "skills", "edu", "summary"],
+   order=["edu", "proj", "skills", "exp", "summary"],
    role="AI Engineer Intern &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Data",
    summary=("I finished my IT degree in March 2026 with an <b>Excellent</b> rank, and I have built real products "
             "for three years. Most of my work is <b>automation</b>: a system that sends a service to the customer "
