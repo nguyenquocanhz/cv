@@ -16,6 +16,7 @@ PDF cùng cập nhật — không phải mở Word sửa tay từng file rồi q
 | `CV-NguyenQuocAnh-MemoryZone` | CV kiểu Việt Nam: năm sinh, giới tính, mục tiêu nghề nghiệp | MemoryZone — Kỹ thuật máy tính |
 | `CV-NguyenQuocAnh-TongQuat` | CV kiểu Việt Nam, không gắn công ty; có thêm bản `.docx` sửa được | Kỹ thuật máy tính, hỗ trợ IT, lập trình — gửi nhiều nơi |
 | `CV-NguyenQuocAnh-EN-Backend` | Java / Spring Boot (tiếng Anh) | Công ty FDI, Nhật, Hàn |
+| `CV-NguyenQuocAnh-AI-Automation` | Python / TypeScript · AI agent, tự động hoá, API | Tin tuyển dụng liệt kê keyword AI agent, n8n, IoT, UI/UX |
 
 Mỗi bản gọn đúng **một trang A4**. `build_cv.py` tự kiểm số trang sau khi dựng và
 báo bản nào tràn, nên không có chuyện gửi nhầm file hai trang.
@@ -23,6 +24,7 @@ báo bản nào tràn, nên không có chuyện gửi nhầm file hai trang.
 ## Chạy
 
 Cần Python 3 và Google Chrome (dùng chế độ headless để in PDF).
+Trên Linux/macOS, trỏ biến môi trường `CV_CHROME` tới binary Chrome/Chromium.
 
 ```bash
 python build_cv.py

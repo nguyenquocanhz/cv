@@ -11,7 +11,7 @@ import html, io, json, os, subprocess, sys, tempfile
 from html.parser import HTMLParser
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
-CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+CHROME = os.environ.get("CV_CHROME") or r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 # ----------------------------------------------------------------------------
 # CSS dùng chung
@@ -286,6 +286,23 @@ PROJ = {
                        date="10/2026", bullets=[
     "Chạy bằng một dòng lệnh: đọc thời gian khởi động, <b>độ chai pin</b> và chu kỳ sạc, <b>SMART ổ SSD/NVMe</b>, RAM, lịch sử lỗi <b>màn hình xanh (BSOD)</b> rồi xuất báo cáo HTML song ngữ Việt – Anh.",
     "Bản <b>PowerShell</b> cho Windows và bản <b>shell</b> cho Linux, macOS, Android (Termux); chỉ đọc, không sửa hệ thống. &nbsp;github.com/nguyenquocanhz/BootReport-Health",
+ ]),
+
+ 'ittools_auto_vi': dict(title="Bộ công cụ tự động hoá tự viết", org="— Python, PowerShell, Node.js, mã nguồn mở",
+                         date="2025 – 2026", bullets=[
+    "<b>DomainGateway</b> theo dõi hạn tên miền nhiều nhà cung cấp &middot; <b>sshvault</b> kho khoá SSH mã hoá AES-256-GCM &middot; <b>pulse</b> giám sát uptime &middot; <b>BootReport-Health</b> đọc SMART, độ chai pin, lỗi BSOD của máy. &nbsp;github.com/nguyenquocanhz",
+ ]),
+
+ 'rapphim_api_vi': dict(title="RapPhim WareHouse", org="— REST API cho nhiều client, thiết kế contract trước khi code",
+                        date="09/2026", bullets=[
+    "<b>Thiết kế API contract trước khi code</b>: phiên bản hoá <code>/api/v1</code>, thống nhất envelope và mã lỗi — ba client (web, Android, iOS) dùng chung một contract; gộp hai nguồn dữ liệu khác schema về một mô hình.",
+    "<b>Spring Boot 4.1 / Java 17</b>, cache in-memory, validation tại biên, <b>OpenAPI 3.1</b> tự sinh kèm Swagger UI; đóng gói <b>Docker</b>, CI <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse",
+ ]),
+
+ 'atsscan_vi': dict(title="ATS Scan", org="— công cụ quét CV &amp; chấm tin tuyển dụng, mã nguồn mở",
+                    date="10/2026", bullets=[
+    "Ứng dụng web chạy <b>hoàn toàn trong trình duyệt</b>: đọc CV <b>PDF / DOCX</b>, so khớp tin tuyển dụng rồi chấm điểm và chỉ ra lỗi khiến máy lọc hồ sơ (ATS) không đọc được; giao diện song ngữ, sáng/tối, responsive.",
+    "<b>JavaScript ES modules</b> không framework, engine tách rời DOM nên <b>kiểm thử bằng <code>node --test</code></b> (31 test); riêng tư <b>ép bằng CSP <code>connect-src 'none'</code></b> — trang không thể gửi dữ liệu đi đâu. &nbsp;github.com/nguyenquocanhz/cv",
  ]),
 
  'phone5s_vi': dict(title="Phone5s", org="— website cho cửa hàng điện thoại, dự án cá nhân",
@@ -598,6 +615,30 @@ VARIANTS = {
      ("Mobile", "React Native / Expo (TypeScript), Flutter (Dart), Android (Java, Kotlin) — MVVM, Room"),
      ("DevOps", "Docker &amp; docker-compose, Linux servers, Maven, Git / GitHub, GitHub Actions CI/CD"),
      ("Principles", "OOP, SOLID, design patterns, layered architecture, MVVM, caching, Agile / Scrum"),
+   ]),
+
+ # ------------------------- AI Agent &amp; Automation (VI) — JD thiên AI / tự động hoá
+ # JD liệt kê keyword rời (Python, Database, Docker, IoT, API, UI/UX, AI Agent, JS/TS,
+ # Robot, Git, Web/App, n8n): mỗi keyword cần một dòng kỹ năng neo vào bằng chứng thật.
+ # Ô vàng = chưa có dấu vết trong CV, chủ nhân CV tự điền mức độ rồi bỏ ô đi.
+ "CV-NguyenQuocAnh-AI-Automation": dict(
+   lang=L_VI, exp=EXP_VI, edu=EDU_VI,
+   role="Fresher Developer &middot; AI Agent &amp; Automation &middot; Python / TypeScript &middot; API &amp; Database",
+   summary=("Tôi tốt nghiệp ngành Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy thật. "
+            "Việc tôi làm nhiều nhất là <b>biến thao tác thủ công thành quy trình tự chạy</b>: hệ thống tự cấp phát "
+            "dịch vụ ngay sau khi khách thanh toán, script <b>Python</b> giám sát hạ tầng, bot cảnh báo. Tôi thiết kế "
+            "<b>REST API</b> và cơ sở dữ liệu cho hệ thống nhiều client, và dùng <b>AI agent (Claude Code, "
+            "Antigravity)</b> hằng ngày như công cụ làm việc — viết prompt, giao việc, kiểm thử lại kết quả."),
+   projects=['atsscan_vi', 'rapphim_api_vi', 'ittools_auto_vi'],
+   skills=[
+     ("Ngôn ngữ", "<b>Python</b>, <b>JavaScript / TypeScript</b>, Java, PHP, SQL, Go, C++"),
+     ("AI Agent &amp; Prompt", "<b>Claude Code</b>, <b>Antigravity</b> — viết prompt, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1"),
+     ("Tự động hoá", "Hệ thống <b>cấp phát dịch vụ tự động</b> ngay sau thanh toán; script Python / PowerShell / Bash chạy theo lịch; webhook, cron, Telegram bot cảnh báo; <b>n8n</b> " + FILL.format("mức độ?")),
+     ("API", "Thiết kế <b>REST API</b> 32 endpoint, phiên bản hoá, tài liệu <b>OpenAPI 3.1 / Swagger</b> tự sinh, validation tại biên, caching; tích hợp cổng thanh toán và API bên thứ ba"),
+     ("Database &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn; <b>Cloudflare R2</b>"),
+     ("Web / App &amp; UI/UX", "<b>Next.js</b>, React, <b>Flutter</b>, React Native; <b>Spring Boot</b> (RESTful API), Servlet &amp; JSP, PHP MVC; giao diện responsive, thư viện component VietCodesUI (6 \u2605 GitHub)"),
+     ("Phần cứng &amp; IoT", "Đọc dữ liệu thiết bị bằng script (SMART, chu kỳ sạc pin, lỗi hệ thống) trên Windows, Linux, Android/Termux; mạng LAN, TCP/IP, Linux server; <b>robot</b> " + FILL.format("kinh nghiệm gì?")),
+     ("DevOps &amp; Git", "<b>Docker</b>, Docker Compose, <b>Git / GitHub</b> (223 repo), <b>Git Flow</b>, <b>GitLab CI/CD</b>, GitHub Actions, Linux server"),
    ]),
 }
 
