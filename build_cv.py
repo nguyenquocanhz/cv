@@ -174,7 +174,7 @@ EXP_EN_PLAIN = [
 EDU_EN_PLAIN = dict(title="HCMC College of Economics and Technology (HOTEC)",
                     org="— Information Technology (Software)", date="08/2023 – 03/2026",
                     sub="<b>Full-time</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; graduated with <b>Excellent</b> rank &nbsp;&middot;&nbsp; "
-                        "TOEIC 575 (07/2024) — I read English technical documents every day; my speaking is still basic and I am working on it")
+                        "TOEIC 575 (07/2024)")
 
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
@@ -312,12 +312,6 @@ PROJ = {
  'ittools_auto_vi': dict(title="Bộ công cụ tự động hoá tự viết", org="— Python, PowerShell, Node.js, mã nguồn mở",
                          date="2025 – 2026", bullets=[
     "<b>DomainGateway</b> theo dõi hạn tên miền nhiều nhà cung cấp &middot; <b>sshvault</b> kho khoá SSH mã hoá AES-256-GCM &middot; <b>pulse</b> giám sát uptime &middot; <b>BootReport-Health</b> đọc SMART, độ chai pin, lỗi BSOD của máy. &nbsp;github.com/nguyenquocanhz",
- ]),
-
- 'atsscan_en': dict(title="ATS Scan", org="— open-source tool: reads a CV, scores a job post",
-                    date="10/2026", bullets=[
-    "A web app that runs <b>only inside the browser</b>. It reads a CV in <b>PDF or DOCX</b>, compares it with a job post, gives a score, and shows why a CV filter (ATS) may fail to read the file.",
-    "Plain <b>JavaScript</b>, no framework. The scoring engine is separate from the page, so I can test it with <code>node --test</code> (31 tests). A <b>CSP</b> rule stops the page from sending data anywhere. &nbsp;github.com/nguyenquocanhz/cv",
  ]),
 
  'ittools_en_plain': dict(title="Small tools I wrote", org="— Python, PowerShell, Node.js, open source",
@@ -694,7 +688,7 @@ VARIANTS = {
             "<b>PDF and DOCX</b> files, and a service that watches servers and sends alerts. I use <b>AI agents "
             "(Claude Code, Antigravity)</b> every day at work. I want to learn <b>RAG, chatbots and LLMs</b> on a "
             "real product."),
-   projects=['atsscan_en', 'ittools_en_plain', 'rapphim_api_en'],
+   projects=['ittools_en_plain', 'rapphim_api_en'],
    skills=[
      ("Languages", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
      ("AI &amp; LLM", "<b>Claude Code</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("done any yet?")),
