@@ -1,0 +1,115 @@
+<meta charset="utf-8">
+<title>CV — Nguyễn Quốc Anh — CV-NguyenQuocAnh-EN-AI-Intern</title>
+<style>
+@page { size: A4; margin: 9mm 12mm 7mm 12mm; }
+*{ box-sizing:border-box; margin:0; padding:0 }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact }
+body{ font-family:"Segoe UI","Calibri",Arial,sans-serif; font-size:9.1pt;
+      line-height:1.36; color:#15181A; background:#fff; }
+.name{ font-size:20pt; font-weight:600; letter-spacing:-.01em; color:#0F4A4F; line-height:1.05 }
+.role{ font-size:8.9pt; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+       color:#3A4A4C; margin-top:4pt }
+.contact{ font-size:8.4pt; color:#2B3436; margin-top:4pt; line-height:1.45 }
+.rule-top{ border-bottom:1.4pt solid #0F4A4F; margin-top:5pt }
+h2{ font-size:8.8pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:#0F4A4F; margin:6pt 0 3pt; padding-bottom:2pt; border-bottom:.8pt solid #C3D0D1;
+    break-after:avoid }
+.summary{ text-align:justify }
+.entry{ margin-top:4.5pt; break-inside:avoid }
+.entry:first-of-type{ margin-top:2pt }
+.entry-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10pt }
+.entry-title{ font-size:9.7pt; font-weight:600; color:#15181A }
+.entry-org{ font-weight:400; color:#33403F }
+.entry-date{ font-size:8.3pt; color:#4E5B5C; white-space:nowrap;
+             font-variant-numeric:tabular-nums; font-weight:600 }
+.entry-sub{ font-size:8.5pt; color:#4E5B5C; margin-top:1pt }
+ul{ margin:2pt 0 0 11pt }
+li{ margin-bottom:1.4pt; padding-left:1pt }
+li::marker{ color:#7C8B8C }
+b,strong{ font-weight:600; color:#0B1112 }
+code{ font-family:Consolas,"Courier New",monospace }
+.skills{ margin-top:3pt }
+.skill-row{ display:flex; gap:8pt; margin-bottom:1.8pt; break-inside:avoid }
+.skill-key{ flex:0 0 86pt; font-weight:600; color:#0F4A4F }
+.skill-val{ flex:1 }
+.fill{ color:#9A5B00; font-weight:600; background:#FFF3DC; padding:0 2pt; border-radius:1.5pt }
+</style>
+<header>
+  <div class="name">Nguyễn Quốc Anh</div>
+  <div class="role">AI Engineer Intern &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Data</div>
+  <div class="contact">0397 215 747 &nbsp;&middot;&nbsp; nguyenquocanh.dev@gmail.com &nbsp;&middot;&nbsp; Binh Tan, Ho Chi Minh City<br>github.com/nguyenquocanhz &nbsp;&middot;&nbsp; linkedin.com/in/nguyenquocanhz &nbsp;&middot;&nbsp; nguyenquocanh.io.vn</div>
+  <div class="rule-top"></div>
+</header>
+<h2>Summary</h2>
+<p class="summary">I finished my IT degree in March 2026 with an <b>Excellent</b> rank, and I have built real products for three years. Most of my work is <b>automation</b>: a system that sends a service to the customer right after they pay, <b>Python</b> scripts that collect, clean and score data, a tool that reads <b>PDF and DOCX</b> files, and a service that watches servers and sends alerts. I use <b>AI agents (Claude Code, Antigravity)</b> every day at work. I want to learn <b>RAG, chatbots and LLMs</b> on a real product.</p>
+<h2>Experience</h2>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">Freelance Developer <span class="entry-org">— online shop with automatic service delivery</span></div>
+    <div class="entry-date">07/2023 – now</div>
+  </div>
+  <ul>
+    <li>Built an online shop with <b>PHP 8, MySQL, Bootstrap and REST APIs</b>. It serves <b>200 customers</b> and <b>50 orders</b> every month.</li>
+    <li>Wrote a system that <b>sets up and sends the service to the customer right after they pay</b>. Nobody has to do it by hand.</li>
+    <li>Connected a payment gateway. Payments are matched to orders in real time. I also built sales reports for the client.</li>
+    <li>Run <b>Linux servers</b> in several regions at <b>99%</b> uptime. I fix problems and bring the service back myself.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">Technical Support Associate <span class="entry-org">— Z1 Computer JSC</span></div>
+    <div class="entry-date">09/2025 – 10/2025</div>
+  </div>
+  <ul>
+    <li>Fixed hardware and software problems, so the office lost less time. Looked after the company website. Used AI tools to make internal work faster.</li>
+  </ul>
+</div>
+<h2>Selected projects</h2>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">ATS Scan <span class="entry-org">— open-source tool: reads a CV, scores a job post</span></div>
+    <div class="entry-date">10/2026</div>
+  </div>
+  <ul>
+    <li>A web app that runs <b>only inside the browser</b>. It reads a CV in <b>PDF or DOCX</b>, compares it with a job post, gives a score, and shows why a CV filter (ATS) may fail to read the file.</li>
+    <li>Plain <b>JavaScript</b>, no framework. The scoring engine is separate from the page, so I can test it with <code>node --test</code> (31 tests). A <b>CSP</b> rule stops the page from sending data anywhere. &nbsp;github.com/nguyenquocanhz/cv</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">Small tools I wrote <span class="entry-org">— Python, PowerShell, Node.js, open source</span></div>
+    <div class="entry-date">2025 – 2026</div>
+  </div>
+  <ul>
+    <li><b>pulse</b> checks if services are up and shows a status page &middot; <b>DomainGateway</b> tracks when domains expire &middot; <b>sshvault</b> keeps SSH keys encrypted &middot; <b>BootReport-Health</b> reads disk health and battery wear from a laptop. &nbsp;github.com/nguyenquocanhz</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">RapPhim WareHouse <span class="entry-org">— one REST API used by three clients</span></div>
+    <div class="entry-date">09/2026</div>
+  </div>
+  <ul>
+    <li>I designed the <b>API first</b>: clear endpoint names, one response shape, one set of error codes. Then the web, Android and iOS clients all used the same API, and I did not have to change the server.</li>
+    <li>Built with <b>Spring Boot 4.1 and Java 17</b>. It caches data, checks input, and writes its own <b>OpenAPI</b> docs. Packed with <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse</li>
+  </ul>
+</div>
+<h2>Skills</h2>
+<div class="skills">
+  <div class="skill-row"><div class="skill-key">Languages</div><div class="skill-val"><b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++</div></div>
+  <div class="skill-row"><div class="skill-key">AI &amp; LLM</div><div class="skill-val"><b>Claude Code</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> <span class="fill">[done any yet?]</span></div></div>
+  <div class="skill-row"><div class="skill-key">Automation</div><div class="skill-val">A system that <b>sends the service right after payment</b>; Python / PowerShell / Bash scripts on a schedule; webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> <span class="fill">[how much?]</span></div></div>
+  <div class="skill-row"><div class="skill-key">Data pipeline &amp; documents</div><div class="skill-val"><b>Read text out of PDF and DOCX files</b> and turn it into clean data; a <b>pipeline</b> that collects → removes duplicates → scores; <b>31 tests</b> that check how well the scoring engine works (evaluation)</div></div>
+  <div class="skill-row"><div class="skill-key">Service / API</div><div class="skill-val"><b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and to a <b>customer and order system (CRM)</b> I built</div></div>
+  <div class="skill-row"><div class="skill-key">Data &amp; Cloud</div><div class="skill-val"><b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries; Cloudflare R2</div></div>
+  <div class="skill-row"><div class="skill-key">Monitoring &amp; DevOps</div><div class="skill-val"><b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux</div></div>
+  <div class="skill-row"><div class="skill-key">Writing &amp; teamwork</div><div class="skill-val">Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) and API docs &middot; <b>team leader for 5 people</b> on two projects &middot; I learn fast and I like solving real problems</div></div>
+</div>
+<h2>Education &amp; certification</h2>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">HCMC College of Economics and Technology (HOTEC) <span class="entry-org">— Information Technology (Software)</span></div>
+    <div class="entry-date">08/2023 – 03/2026</div>
+  </div>
+  <div class="entry-sub"><b>Full-time</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; graduated with <b>Excellent</b> rank &nbsp;&middot;&nbsp; TOEIC 575 (07/2024) — I read English technical documents every day; my speaking is still basic and I am working on it</div>
+</div>

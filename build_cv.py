@@ -155,6 +155,27 @@ EXP_KT_VI = [
     ]),
 ]
 
+# Bản tiếng Anh dễ đọc: câu ngắn, từ thông dụng, giữ nguyên thuật ngữ công nghệ.
+# Mục tiêu là chủ nhân CV nói lại được những câu này trong buổi phỏng vấn.
+EXP_EN_PLAIN = [
+    dict(title="Freelance Developer", org="— online shop with automatic service delivery",
+         date="07/2023 – now", bullets=[
+        f"Built an online shop with <b>PHP 8, MySQL, Bootstrap and REST APIs</b>. It serves <b>{USERS} customers</b> and <b>{ORDERS} orders</b> every month.",
+        "Wrote a system that <b>sets up and sends the service to the customer right after they pay</b>. Nobody has to do it by hand.",
+        "Connected a payment gateway. Payments are matched to orders in real time. I also built sales reports for the client.",
+        f"Run <b>Linux servers</b> in several regions at <b>{UPTIME}</b> uptime. I fix problems and bring the service back myself.",
+    ]),
+    dict(title="Technical Support Associate", org="— Z1 Computer JSC",
+         date="09/2025 – 10/2025", bullets=[
+        "Fixed hardware and software problems, so the office lost less time. Looked after the company website. Used AI tools to make internal work faster.",
+    ]),
+]
+
+EDU_EN_PLAIN = dict(title="HCMC College of Economics and Technology (HOTEC)",
+                    org="— Information Technology (Software)", date="08/2023 – 03/2026",
+                    sub="<b>Full-time</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; graduated with <b>Excellent</b> rank &nbsp;&middot;&nbsp; "
+                        "TOEIC 575 (07/2024) — I read English technical documents every day; my speaking is still basic and I am working on it")
+
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
     "Tối ưu hiệu năng bằng <b>Caffeine cache</b> giảm số lần gọi API ngoài; <b>Spring Actuator</b> cho health check; <b>Bean Validation</b> kiểm soát đầu vào; có unit test cho tầng web.",
@@ -291,6 +312,23 @@ PROJ = {
  'ittools_auto_vi': dict(title="Bộ công cụ tự động hoá tự viết", org="— Python, PowerShell, Node.js, mã nguồn mở",
                          date="2025 – 2026", bullets=[
     "<b>DomainGateway</b> theo dõi hạn tên miền nhiều nhà cung cấp &middot; <b>sshvault</b> kho khoá SSH mã hoá AES-256-GCM &middot; <b>pulse</b> giám sát uptime &middot; <b>BootReport-Health</b> đọc SMART, độ chai pin, lỗi BSOD của máy. &nbsp;github.com/nguyenquocanhz",
+ ]),
+
+ 'atsscan_en': dict(title="ATS Scan", org="— open-source tool: reads a CV, scores a job post",
+                    date="10/2026", bullets=[
+    "A web app that runs <b>only inside the browser</b>. It reads a CV in <b>PDF or DOCX</b>, compares it with a job post, gives a score, and shows why a CV filter (ATS) may fail to read the file.",
+    "Plain <b>JavaScript</b>, no framework. The scoring engine is separate from the page, so I can test it with <code>node --test</code> (31 tests). A <b>CSP</b> rule stops the page from sending data anywhere. &nbsp;github.com/nguyenquocanhz/cv",
+ ]),
+
+ 'ittools_en_plain': dict(title="Small tools I wrote", org="— Python, PowerShell, Node.js, open source",
+                          date="2025 – 2026", bullets=[
+    "<b>pulse</b> checks if services are up and shows a status page &middot; <b>DomainGateway</b> tracks when domains expire &middot; <b>sshvault</b> keeps SSH keys encrypted &middot; <b>BootReport-Health</b> reads disk health and battery wear from a laptop. &nbsp;github.com/nguyenquocanhz",
+ ]),
+
+ 'rapphim_api_en': dict(title="RapPhim WareHouse", org="— one REST API used by three clients",
+                        date="09/2026", bullets=[
+    "I designed the <b>API first</b>: clear endpoint names, one response shape, one set of error codes. Then the web, Android and iOS clients all used the same API, and I did not have to change the server.",
+    "Built with <b>Spring Boot 4.1 and Java 17</b>. It caches data, checks input, and writes its own <b>OpenAPI</b> docs. Packed with <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse",
  ]),
 
  'rapphim_api_vi': dict(title="RapPhim WareHouse", org="— REST API cho nhiều client, thiết kế contract trước khi code",
@@ -640,6 +678,30 @@ VARIANTS = {
      ("Dữ liệu &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn; Cloudflare R2"),
      ("Giám sát &amp; DevOps", "<b>pulse</b> — giám sát hệ thống và uptime kèm trang trạng thái, cảnh báo; hạ tầng khách hàng uptime <b>99%</b> &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
      ("Tài liệu &amp; phối hợp", "Viết <b>giáo trình kỹ thuật 56 trang</b> chuẩn IEEE Std 1063-2001, tài liệu API tự sinh &middot; <b>trưởng nhóm 5 người</b> ở hai dự án &middot; chủ động, <b>học hỏi</b> nhanh, quen <b>giải quyết vấn đề</b> thực tế"),
+   ]),
+ # ------------------- Thực tập sinh AI Engineer (EN) — tiếng Anh dễ, hợp trình độ thật
+ # Giữ nguyên thuật ngữ công nghệ (REST API, Docker, Python) vì nhà tuyển dụng dò đúng
+ # mấy chữ đó, nhưng câu bao quanh viết ngắn và dùng từ thông dụng, để chủ nhân CV nói
+ # lại được trong buổi phỏng vấn thay vì đọc một bản tiếng Anh không phải giọng mình.
+ "CV-NguyenQuocAnh-EN-AI-Intern": dict(
+   lang=L_EN, exp=EXP_EN_PLAIN, edu=EDU_EN_PLAIN,
+   role="AI Engineer Intern &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Data",
+   summary=("I finished my IT degree in March 2026 with an <b>Excellent</b> rank, and I have built real products "
+            "for three years. Most of my work is <b>automation</b>: a system that sends a service to the customer "
+            "right after they pay, <b>Python</b> scripts that collect, clean and score data, a tool that reads "
+            "<b>PDF and DOCX</b> files, and a service that watches servers and sends alerts. I use <b>AI agents "
+            "(Claude Code, Antigravity)</b> every day at work. I want to learn <b>RAG, chatbots and LLMs</b> on a "
+            "real product."),
+   projects=['atsscan_en', 'ittools_en_plain', 'rapphim_api_en'],
+   skills=[
+     ("Languages", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
+     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("done any yet?")),
+     ("Automation", "A system that <b>sends the service right after payment</b>; Python / PowerShell / Bash scripts on a schedule; webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> " + FILL.format("how much?")),
+     ("Data pipeline &amp; documents", "<b>Read text out of PDF and DOCX files</b> and turn it into clean data; a <b>pipeline</b> that collects → removes duplicates → scores; <b>31 tests</b> that check how well the scoring engine works (evaluation)"),
+     ("Service / API", "<b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and to a <b>customer and order system (CRM)</b> I built"),
+     ("Data &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries; Cloudflare R2"),
+     ("Monitoring &amp; DevOps", "<b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
+     ("Writing &amp; teamwork", "Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) and API docs &middot; <b>team leader for 5 people</b> on two projects &middot; I learn fast and I like solving real problems"),
    ]),
 }
 
