@@ -51,11 +51,22 @@ code{ font-family:Consolas,"Courier New",monospace }
 <h2>Selected projects</h2>
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title">Small tools I wrote <span class="entry-org">— Python, PowerShell, Node.js, open source</span></div>
-    <div class="entry-date">2025 – 2026</div>
+    <div class="entry-title">Domain Gateway <span class="entry-org">— one dashboard for every domain expiry date, open source</span></div>
+    <div class="entry-date">2026</div>
   </div>
   <ul>
-    <li><b>pulse</b> checks if services are up and shows a status page &middot; <b>DomainGateway</b> tracks when domains expire &middot; <b>sshvault</b> keeps SSH keys encrypted &middot; <b>BootReport-Health</b> reads disk health and battery wear from a laptop. &nbsp;github.com/nguyenquocanhz</li>
+    <li>A <b>Python</b> web app (~4,300 lines) that keeps every domain in one place, whoever you bought it from. It reads the expiry date <b>straight from the registry</b>, so it needs no API key from any provider.</li>
+    <li>Each domain goes down a <b>chain of sources</b> and stops at the first one that answers: <b>RDAP → WHOIS port 43 → BKNS</b> for <code>.vn</code> names, which have no public RDAP. Answers are cached for 12 hours, and a <b>Telegram alert</b> goes out before a domain expires. Runs in <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/DomainGateway</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">BootReport-Health <span class="entry-org">— one-line health check for a laptop, open source</span></div>
+    <div class="entry-date">10/2026</div>
+  </div>
+  <ul>
+    <li>Runs with <b>one command</b> and reads what the machine already knows: boot time and what slows it down, <b>battery wear</b> and charge cycles, <b>SMART</b> data from the SSD/NVMe, and the <b>blue screen (BSOD)</b> history. It writes an HTML report in Vietnamese and English.</li>
+    <li><b>PowerShell</b> for Windows and <b>POSIX shell</b> for Linux, macOS and Android (Termux). It only reads. It never changes the machine and never sends data anywhere. &nbsp;github.com/nguyenquocanhz/BootReport-Health</li>
   </ul>
 </div>
 <div class="entry">
@@ -64,7 +75,7 @@ code{ font-family:Consolas,"Courier New",monospace }
     <div class="entry-date">09/2026</div>
   </div>
   <ul>
-    <li>I designed the <b>API first</b>: clear endpoint names, one response shape, one set of error codes. Then the web, Android and iOS clients all used the same API, and I did not have to change the server.</li>
+    <li>I designed the <b>API first</b>: clear endpoint names, one response shape, one set of error codes. Then the web, Android and iOS clients all used it without any change to the server.</li>
     <li>Built with <b>Spring Boot 4.1 and Java 17</b>. It caches data, checks input, and writes its own <b>OpenAPI</b> docs. Packed with <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse</li>
   </ul>
 </div>
@@ -72,12 +83,12 @@ code{ font-family:Consolas,"Courier New",monospace }
 <div class="skills">
   <div class="skill-row"><div class="skill-key">Languages</div><div class="skill-val"><b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++</div></div>
   <div class="skill-row"><div class="skill-key">AI &amp; LLM</div><div class="skill-val"><b>Claude Code</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> <span class="fill">[done any yet?]</span></div></div>
-  <div class="skill-row"><div class="skill-key">Automation</div><div class="skill-val">A system that <b>sends the service right after payment</b>; Python / PowerShell / Bash scripts on a schedule; webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> <span class="fill">[how much?]</span></div></div>
-  <div class="skill-row"><div class="skill-key">Data pipeline &amp; documents</div><div class="skill-val"><b>Read text out of PDF and DOCX files</b> and turn it into clean data; a <b>pipeline</b> that collects → removes duplicates → scores; <b>31 tests</b> that check how well the scoring engine works (evaluation)</div></div>
-  <div class="skill-row"><div class="skill-key">Service / API</div><div class="skill-val"><b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and to a <b>customer and order system (CRM)</b> I built</div></div>
+  <div class="skill-row"><div class="skill-key">Automation</div><div class="skill-val">Services that <b>run on their own</b> on a schedule — Python / PowerShell / Bash, webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> <span class="fill">[how much?]</span></div></div>
+  <div class="skill-row"><div class="skill-key">Data pipeline</div><div class="skill-val">A <b>pipeline</b> that collects → cleans → scores, with a <b>chain of fallback sources</b> and a cache; I also read text out of <b>PDF and DOCX</b> files and turn it into clean data</div></div>
+  <div class="skill-row"><div class="skill-key">Service / API</div><div class="skill-val"><b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and a <b>CRM</b></div></div>
   <div class="skill-row"><div class="skill-key">Data &amp; Cloud</div><div class="skill-val"><b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries; Cloudflare R2</div></div>
-  <div class="skill-row"><div class="skill-key">Monitoring &amp; DevOps</div><div class="skill-val"><b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux</div></div>
-  <div class="skill-row"><div class="skill-key">Writing &amp; teamwork</div><div class="skill-val">Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) and API docs &middot; <b>team leader for 5 people</b> on two projects &middot; I learn fast and I like solving real problems</div></div>
+  <div class="skill-row"><div class="skill-key">Monitoring &amp; DevOps</div><div class="skill-val"><b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux</div></div>
+  <div class="skill-row"><div class="skill-key">Writing &amp; teamwork</div><div class="skill-val">Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) &middot; <b>team leader for 5 people</b> &middot; proactive, willing to learn, good at problem solving</div></div>
 </div>
 <h2>Experience</h2>
 <div class="entry">
@@ -102,4 +113,4 @@ code{ font-family:Consolas,"Courier New",monospace }
   </ul>
 </div>
 <h2>Summary</h2>
-<p class="summary">I finished my IT degree in March 2026 with an <b>Excellent</b> rank, and I have built real products for three years. Most of my work is <b>automation</b>: a system that sends a service to the customer right after they pay, <b>Python</b> scripts that collect, clean and score data, a tool that reads <b>PDF and DOCX</b> files, and a service that watches servers and sends alerts. I use <b>AI agents (Claude Code, Antigravity)</b> every day at work. I want to learn <b>RAG, chatbots and LLMs</b> on a real product.</p>
+<p class="summary">I finished my IT degree in March 2026 with an <b>Excellent</b> rank and have built real products for three years. My main work is <b>automation</b> and <b>Python data pipelines</b>. I use <b>AI agents</b> daily, and I want to learn <b>RAG, chatbots and LLMs</b> on a real product.</p>
