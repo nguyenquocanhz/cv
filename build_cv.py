@@ -321,9 +321,15 @@ PROJ = {
  ]),
 
  'claimkit_en': dict(title="Claim Kit", org="— warehouse and logistics solution",
-                     date=FILL.format("when?"), bullets=[
+                     date="2026", bullets=[
+    "Tracks goods in and out of a warehouse. Staff <b>scan the tray code and the product code</b> to check items in and out every day.",
     "Backend in <b>Go</b> with the <b>Gin</b> framework. Frontend in <b>native TypeScript</b> with plain HTML, CSS and JavaScript — no framework.",
-    "What it does for the warehouse team: " + FILL.format("tell me and I write this line"),
+ ]),
+
+ 'claimkit_vi': dict(title="Claim Kit", org="— giải pháp quản lý kho và logistics",
+                     date="2026", bullets=[
+    "Quản lý hàng vào – hàng ra của kho: nhân viên <b>quét mã khay và mã sản phẩm</b> để check-in, check-out hàng ngày.",
+    "Backend <b>Go</b> với framework <b>Gin</b>. Frontend <b>TypeScript thuần</b> cùng HTML, CSS, JavaScript — không dùng framework.",
  ]),
 
  'bootreport_en': dict(title="BootReport-Health", org="— one-line health check for a laptop, open source",
@@ -676,7 +682,7 @@ VARIANTS = {
             "<b>pipeline Python</b> thu thập – chuẩn hoá – chấm điểm, công cụ bóc nội dung <b>tài liệu PDF / DOCX</b>, "
             "hệ thống <b>giám sát</b> uptime tự cảnh báo. Tôi dùng <b>AI agent (Claude Code, Antigravity)</b> hằng ngày "
             "— viết prompt, giao việc, kiểm thử lại kết quả — và mong được học <b>RAG, chatbot, LLM</b> trong sản phẩm thật."),
-   projects=['atsscan_vi', 'ittools_auto_vi'],
+   projects=['claimkit_vi', 'atsscan_vi', 'ittools_auto_vi'],
    skills=[
      ("Ngôn ngữ", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
      ("AI &amp; LLM", "<b>Claude Code</b>, <b>Claude Cowork</b>, <b>Antigravity</b> — viết <b>prompt</b>, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("đã làm gì chưa?")),
