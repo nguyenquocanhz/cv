@@ -320,6 +320,12 @@ PROJ = {
     "Each domain goes down a <b>chain of sources</b> and stops at the first one that answers: <b>RDAP → WHOIS port 43 → BKNS</b> for <code>.vn</code> names, which have no public RDAP. Answers are cached for 12 hours, and a <b>Telegram alert</b> goes out before a domain expires. Runs in <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/DomainGateway",
  ]),
 
+ 'claimkit_en': dict(title="Claim Kit", org="— warehouse and logistics solution",
+                     date=FILL.format("when?"), bullets=[
+    "Backend in <b>Go</b> with the <b>Gin</b> framework. Frontend in <b>native TypeScript</b> with plain HTML, CSS and JavaScript — no framework.",
+    "What it does for the warehouse team: " + FILL.format("tell me and I write this line"),
+ ]),
+
  'bootreport_en': dict(title="BootReport-Health", org="— one-line health check for a laptop, open source",
                        date="10/2026", bullets=[
     "Runs with <b>one command</b> and reads what the machine already knows: boot time and what slows it down, <b>battery wear</b> and charge cycles, <b>SMART</b> data from the SSD/NVMe, and the <b>blue screen (BSOD)</b> history. It writes an HTML report in Vietnamese and English.",
@@ -677,7 +683,7 @@ VARIANTS = {
      ("AI workflow &amp; Automation", "Hệ thống <b>cấp phát dịch vụ tự động</b> ngay sau thanh toán; script Python / PowerShell / Bash chạy theo lịch; webhook, cron, bot cảnh báo Telegram; <b>n8n</b> " + FILL.format("mức độ?")),
      ("Pipeline &amp; xử lý tài liệu", "<b>Đọc và bóc nội dung PDF / DOCX</b> rồi chuẩn hoá về cấu trúc dùng được; <b>pipeline</b> thu thập → khử trùng lặp → chấm điểm; <b>31 test hồi quy</b> đo chất lượng bộ máy chấm (evaluation)"),
      ("Service / API", "<b>REST API</b> 32 endpoint, <b>OpenAPI 3.1 / Swagger</b> tự sinh, validation tại biên, caching; tích hợp cổng thanh toán và API bên thứ ba vào website, <b>hệ thống quản lý khách hàng – đơn hàng (CRM)</b> tự xây"),
-     ("Dữ liệu &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn; Cloudflare R2"),
+     ("Dữ liệu &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — schema chuẩn hoá (ERD), stored procedure, indexing, tối ưu truy vấn &middot; <b>Google Cloud (GCP)</b>, Google Drive, Google Sheets, Cloudflare R2"),
      ("Giám sát &amp; DevOps", "<b>pulse</b> — giám sát hệ thống và uptime kèm trang trạng thái, cảnh báo; hạ tầng khách hàng uptime <b>99%</b> &middot; <b>Docker</b>, Docker Compose, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
      ("Tài liệu &amp; phối hợp", "Viết <b>giáo trình kỹ thuật 56 trang</b> chuẩn IEEE Std 1063-2001, tài liệu API tự sinh &middot; <b>trưởng nhóm 5 người</b> ở hai dự án &middot; chủ động, <b>học hỏi</b> nhanh, quen <b>giải quyết vấn đề</b> thực tế"),
    ]),
@@ -692,14 +698,14 @@ VARIANTS = {
    summary=("I finished my IT degree in March 2026 with an <b>Excellent</b> rank and have built real products for "
             "three years. My main work is <b>automation</b> and <b>Python data pipelines</b>. I use <b>AI agents</b> "
             "daily, and I want to learn <b>RAG, chatbots and LLMs</b> on a real product."),
-   projects=['domaingateway_en', 'bootreport_en', 'rapphim_api_en'],
+   projects=['claimkit_en', 'domaingateway_en', 'bootreport_en', 'rapphim_api_en'],
    skills=[
      ("Languages", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
      ("AI &amp; LLM", "<b>Claude Code</b>, <b>Claude Cowork</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("done any yet?")),
      ("Automation", "Services that <b>run on their own</b> on a schedule — Python / PowerShell / Bash, webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> " + FILL.format("how much?")),
      ("Data pipeline", "A <b>pipeline</b> that collects → cleans → scores, with a <b>chain of fallback sources</b> and a cache; I also read text out of <b>PDF and DOCX</b> files and turn it into clean data"),
      ("Service / API", "<b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and a <b>CRM</b>"),
-     ("Data &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries; Cloudflare R2"),
+     ("Data &amp; Cloud", "<b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries &middot; <b>Google Cloud (GCP)</b>, Google Drive, Google Sheets, Cloudflare R2"),
      ("Monitoring &amp; DevOps", "<b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
      ("Writing &amp; teamwork", "Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) &middot; <b>team leader for 5 people</b> &middot; proactive, willing to learn, good at problem solving"),
    ]),
