@@ -16,6 +16,10 @@ topcv-jobs.json
 toeic-700/
 toeic-vocab/
 
+# danh gia cong ty lay tu mang xa hoi — co ten nguoi that, khong day len repo cong khai
+review-*.json
+review-*.md
+
 # thu tu va tin nhan ung tuyen — chua thong tin lien he cua nha tuyen dung
 email-*.txt
 zalo-*.txt
