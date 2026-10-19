@@ -664,7 +664,7 @@ VARIANTS = {
  "CV-NguyenQuocAnh-AI-Automation": dict(
    lang=L_VI, exp=EXP_VI, edu=EDU_VI,
    order=["edu", "proj", "skills", "exp", "summary"],
-   role="Thực tập sinh AI Engineer &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Dữ liệu",
+   role="Thực tập sinh AI Engineer &middot; Antigravity &amp; Claude Code &middot; Python &middot; Automation &amp; API",
    summary=("Tôi vừa tốt nghiệp Cao đẳng Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy "
             "thật. Việc tôi làm nhiều nhất đúng là <b>automation</b>: hệ thống tự cấp phát dịch vụ sau thanh toán, "
             "<b>pipeline Python</b> thu thập – chuẩn hoá – chấm điểm, công cụ bóc nội dung <b>tài liệu PDF / DOCX</b>, "
@@ -688,7 +688,7 @@ VARIANTS = {
  "CV-NguyenQuocAnh-EN-AI-Intern": dict(
    lang=L_EN, exp=EXP_EN_PLAIN, edu=EDU_EN_PLAIN,
    order=["edu", "proj", "skills", "exp", "summary"],
-   role="AI Engineer Intern &middot; Python &middot; AI Workflow &amp; Automation &middot; API &amp; Data",
+   role="AI Engineer Intern &middot; Antigravity &amp; Claude Code &middot; Python &middot; Automation &amp; API",
    summary=("I finished my IT degree in March 2026 with an <b>Excellent</b> rank and have built real products for "
             "three years. My main work is <b>automation</b> and <b>Python data pipelines</b>. I use <b>AI agents</b> "
             "daily, and I want to learn <b>RAG, chatbots and LLMs</b> on a real product."),
