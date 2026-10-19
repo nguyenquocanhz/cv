@@ -18,6 +18,7 @@ PDF cùng cập nhật — không phải mở Word sửa tay từng file rồi q
 | `CV-NguyenQuocAnh-EN-Backend` | Java / Spring Boot (tiếng Anh) | Công ty FDI, Nhật, Hàn |
 | `CV-NguyenQuocAnh-AI-Automation` | Python · AI workflow & automation · pipeline, xử lý tài liệu, giám sát | Thực tập sinh AI Engineer — chatbot, RAG, automation |
 | `CV-NguyenQuocAnh-EN-AI-Intern` | Bản tiếng Anh của bản trên, viết bằng tiếng Anh dễ | Thực tập sinh AI Engineer, công ty yêu cầu CV tiếng Anh |
+| `CV-NguyenQuocAnh-AI-CongKhai` &middot; `-EN-AI-CongKhai` | Hai bản trên, bỏ số điện thoại ở dòng liên hệ | Đăng nơi công khai: nhóm Facebook, diễn đàn |
 
 Mỗi bản gọn đúng **một trang A4**. `build_cv.py` tự kiểm số trang sau khi dựng và
 báo bản nào tràn, nên không có chuyện gửi nhầm file hai trang.

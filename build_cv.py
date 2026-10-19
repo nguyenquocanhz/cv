@@ -64,6 +64,11 @@ CONTACT = ('0397 215 747 &nbsp;&middot;&nbsp; nguyenquocanh.dev@gmail.com '
            'github.com/nguyenquocanhz &nbsp;&middot;&nbsp; linkedin.com/in/nguyenquocanhz '
            '&nbsp;&middot;&nbsp; nguyenquocanh.io.vn')
 
+# Bản đăng nơi công khai (nhóm Facebook, diễn đàn): bỏ số điện thoại, giữ email.
+CONTACT_PUBLIC = ('nguyenquocanh.dev@gmail.com &nbsp;&middot;&nbsp; {loc}<br>'
+                  'github.com/nguyenquocanhz &nbsp;&middot;&nbsp; linkedin.com/in/nguyenquocanhz '
+                  '&nbsp;&middot;&nbsp; nguyenquocanh.io.vn')
+
 # ----------------------------------------------------------------------------
 # DỮ LIỆU — sửa ở đây
 # ----------------------------------------------------------------------------
@@ -718,6 +723,13 @@ VARIANTS = {
      ("Writing &amp; teamwork", "Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) &middot; <b>team leader for 5 people</b> &middot; proactive, willing to learn, good at problem solving"),
    ]),
 }
+
+# Cùng nội dung với hai bản trên, chỉ khác dòng liên hệ — sửa bản gốc thì bản
+# công khai tự đổi theo, không phải nhớ sửa hai chỗ.
+for _src, _pub in [("CV-NguyenQuocAnh-AI-Automation", "CV-NguyenQuocAnh-AI-CongKhai"),
+                   ("CV-NguyenQuocAnh-EN-AI-Intern",  "CV-NguyenQuocAnh-EN-AI-CongKhai")]:
+    VARIANTS[_pub] = dict(VARIANTS[_src],
+                          contact=CONTACT_PUBLIC.format(loc=VARIANTS[_src]["lang"]["loc"]))
 
 # ----------------------------------------------------------------------------
 # Dựng HTML
