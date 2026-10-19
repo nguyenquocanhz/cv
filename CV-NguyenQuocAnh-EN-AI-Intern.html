@@ -65,8 +65,8 @@ code{ font-family:Consolas,"Courier New",monospace }
     <div class="entry-date">2026</div>
   </div>
   <ul>
-    <li>A <b>Python</b> web app (~4,300 lines) that keeps every domain in one place, whoever you bought it from. It reads the expiry date <b>straight from the registry</b>, so it needs no API key from any provider.</li>
-    <li>Each domain goes down a <b>chain of sources</b> and stops at the first one that answers: <b>RDAP → WHOIS port 43 → BKNS</b> for <code>.vn</code> names, which have no public RDAP. Answers are cached for 12 hours, and a <b>Telegram alert</b> goes out before a domain expires. Runs in <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/DomainGateway</li>
+    <li>A <b>Python</b> web app (~4,300 lines) that keeps every domain in one place. It reads the expiry date <b>straight from the registry</b>, so it needs no API key from any provider.</li>
+    <li>Each domain goes down a <b>chain of sources</b> and stops at the first that answers: <b>RDAP → WHOIS port 43 → BKNS</b> for <code>.vn</code> names. Answers are cached 12 hours, a <b>Telegram alert</b> goes out before expiry. <b>Docker</b>, <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/DomainGateway</li>
   </ul>
 </div>
 <div class="entry">
@@ -75,18 +75,8 @@ code{ font-family:Consolas,"Courier New",monospace }
     <div class="entry-date">10/2026</div>
   </div>
   <ul>
-    <li>Runs with <b>one command</b> and reads what the machine already knows: boot time and what slows it down, <b>battery wear</b> and charge cycles, <b>SMART</b> data from the SSD/NVMe, and the <b>blue screen (BSOD)</b> history. It writes an HTML report in Vietnamese and English.</li>
-    <li><b>PowerShell</b> for Windows and <b>POSIX shell</b> for Linux, macOS and Android (Termux). It only reads. It never changes the machine and never sends data anywhere. &nbsp;github.com/nguyenquocanhz/BootReport-Health</li>
-  </ul>
-</div>
-<div class="entry">
-  <div class="entry-head">
-    <div class="entry-title">RapPhim WareHouse <span class="entry-org">— one REST API used by three clients</span></div>
-    <div class="entry-date">09/2026</div>
-  </div>
-  <ul>
-    <li>I designed the <b>API first</b>: clear endpoint names, one response shape, one set of error codes. Then the web, Android and iOS clients all used it without any change to the server.</li>
-    <li>Built with <b>Spring Boot 4.1 and Java 17</b>. It caches data, checks input, and writes its own <b>OpenAPI</b> docs. Packed with <b>Docker</b>, built by <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse</li>
+    <li><b>One command</b> reads what the machine already knows — boot time, <b>battery wear</b>, <b>SMART</b> data from the SSD/NVMe, <b>blue screen (BSOD)</b> history — and writes an HTML report in Vietnamese and English.</li>
+    <li><b>PowerShell</b> for Windows, <b>POSIX shell</b> for Linux, macOS and Android (Termux). Read-only: it never changes the machine, never sends data anywhere. &nbsp;github.com/nguyenquocanhz/BootReport-Health</li>
   </ul>
 </div>
 <h2>Skills</h2>
@@ -96,7 +86,8 @@ code{ font-family:Consolas,"Courier New",monospace }
   <div class="skill-row"><div class="skill-key">Automation</div><div class="skill-val">Services that <b>run on their own</b> on a schedule — Python / PowerShell / Bash, webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> <span class="fill">[how much?]</span></div></div>
   <div class="skill-row"><div class="skill-key">Data pipeline</div><div class="skill-val">A <b>pipeline</b> that collects → cleans → scores, with a <b>chain of fallback sources</b> and a cache; I also read text out of <b>PDF and DOCX</b> files and turn it into clean data</div></div>
   <div class="skill-row"><div class="skill-key">Service / API</div><div class="skill-val"><b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and a <b>CRM</b></div></div>
-  <div class="skill-row"><div class="skill-key">Data &amp; Cloud</div><div class="skill-val"><b>SQL Server</b>, <b>MySQL 8</b> — database design (ERD), stored procedures, indexes, faster queries &middot; <b>Google Cloud (GCP)</b>, Google Drive, Google Sheets, Cloudflare R2</div></div>
+  <div class="skill-row"><div class="skill-key">Data &amp; Cloud</div><div class="skill-val"><b>SQL Server</b>, <b>MySQL</b> — database design (ERD), stored procedures, indexes, faster queries &middot; <b>Google Cloud (GCP)</b>, Google Drive, Google Sheets, Cloudflare R2</div></div>
+  <div class="skill-row"><div class="skill-key">Web hosting</div><div class="skill-val"><b>cPanel</b>, <b>DirectAdmin</b>, <b>aaPanel</b>, phpMyAdmin &middot; <b>AWS EC2</b> and VPS — I set up, secure and keep web servers running</div></div>
   <div class="skill-row"><div class="skill-key">Monitoring &amp; DevOps</div><div class="skill-val"><b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux</div></div>
   <div class="skill-row"><div class="skill-key">Writing &amp; teamwork</div><div class="skill-val">Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) &middot; <b>team leader for 5 people</b> &middot; proactive, willing to learn, good at problem solving</div></div>
 </div>
