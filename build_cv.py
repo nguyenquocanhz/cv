@@ -158,9 +158,9 @@ EXP_KT_VI = [
 # Bản tiếng Anh dễ đọc: câu ngắn, từ thông dụng, giữ nguyên thuật ngữ công nghệ.
 # Mục tiêu là chủ nhân CV nói lại được những câu này trong buổi phỏng vấn.
 EXP_EN_PLAIN = [
-    dict(title="Freelance Developer", org="— online shop with automatic service delivery",
+    dict(title="Freelance Developer", org="— <b>Ptcloud.net</b>, online service shop with automatic delivery",
          date="07/2023 – now", bullets=[
-        f"Built an online shop with <b>PHP 8, MySQL, Bootstrap and REST APIs</b>. It serves <b>{USERS} customers</b> and <b>{ORDERS} orders</b> every month.",
+        f"Built the shop with <b>PHP 8, MySQL, Bootstrap and REST APIs</b>. It serves <b>{USERS} customers</b> and <b>{ORDERS} orders</b> every month.",
         "Wrote a system that <b>sets up and sends the service to the customer right after they pay</b>. Nobody has to do it by hand.",
         "Connected a payment gateway. Payments are matched to orders in real time. I also built sales reports for the client.",
         f"Run <b>Linux servers</b> in several regions at <b>{UPTIME}</b> uptime. I fix problems and bring the service back myself.",
@@ -687,7 +687,7 @@ VARIANTS = {
  # lại được trong buổi phỏng vấn thay vì đọc một bản tiếng Anh không phải giọng mình.
  "CV-NguyenQuocAnh-EN-AI-Intern": dict(
    lang=L_EN, exp=EXP_EN_PLAIN, edu=EDU_EN_PLAIN,
-   order=["edu", "proj", "skills", "exp", "summary"],
+   order=["edu", "proj", "skills", "exp"],
    role="AI Engineer Intern &middot; Antigravity &amp; Claude Code &middot; Python &middot; Automation &amp; API",
    summary=("I finished my IT degree in March 2026 with an <b>Excellent</b> rank and have built real products for "
             "three years. My main work is <b>automation</b> and <b>Python data pipelines</b>. I use <b>AI agents</b> "
