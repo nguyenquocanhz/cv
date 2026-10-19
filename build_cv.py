@@ -673,7 +673,7 @@ VARIANTS = {
    projects=['atsscan_vi', 'ittools_auto_vi', 'rapphim_api_vi'],
    skills=[
      ("Ngôn ngữ", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
-     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Antigravity</b> — viết <b>prompt</b>, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("đã làm gì chưa?")),
+     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Claude Cowork</b>, <b>Antigravity</b> — viết <b>prompt</b>, giao việc cho agent rồi kiểm thử lại kết quả; ứng dụng AI tự động hoá quy trình nội bộ tại Công ty Máy tính Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("đã làm gì chưa?")),
      ("AI workflow &amp; Automation", "Hệ thống <b>cấp phát dịch vụ tự động</b> ngay sau thanh toán; script Python / PowerShell / Bash chạy theo lịch; webhook, cron, bot cảnh báo Telegram; <b>n8n</b> " + FILL.format("mức độ?")),
      ("Pipeline &amp; xử lý tài liệu", "<b>Đọc và bóc nội dung PDF / DOCX</b> rồi chuẩn hoá về cấu trúc dùng được; <b>pipeline</b> thu thập → khử trùng lặp → chấm điểm; <b>31 test hồi quy</b> đo chất lượng bộ máy chấm (evaluation)"),
      ("Service / API", "<b>REST API</b> 32 endpoint, <b>OpenAPI 3.1 / Swagger</b> tự sinh, validation tại biên, caching; tích hợp cổng thanh toán và API bên thứ ba vào website, <b>hệ thống quản lý khách hàng – đơn hàng (CRM)</b> tự xây"),
@@ -695,7 +695,7 @@ VARIANTS = {
    projects=['domaingateway_en', 'bootreport_en', 'rapphim_api_en'],
    skills=[
      ("Languages", "<b>Python</b>, JavaScript / TypeScript, Java, PHP, SQL, Go, C++"),
-     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("done any yet?")),
+     ("AI &amp; LLM", "<b>Claude Code</b>, <b>Claude Cowork</b>, <b>Antigravity</b> — I write <b>prompts</b>, give the work to the agent, then test the result. I used AI tools to speed up office work at Z1 &middot; <b>RAG</b>, <b>chatbot</b> " + FILL.format("done any yet?")),
      ("Automation", "Services that <b>run on their own</b> on a schedule — Python / PowerShell / Bash, webhooks, cron jobs, a Telegram alert bot; <b>n8n</b> " + FILL.format("how much?")),
      ("Data pipeline", "A <b>pipeline</b> that collects → cleans → scores, with a <b>chain of fallback sources</b> and a cache; I also read text out of <b>PDF and DOCX</b> files and turn it into clean data"),
      ("Service / API", "<b>REST API</b> with 32 endpoints, <b>OpenAPI / Swagger</b> docs written by the code, input checks, caching; connected payment and third-party APIs to a website and a <b>CRM</b>"),
