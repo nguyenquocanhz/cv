@@ -897,9 +897,12 @@ def build_docx(slug, v):
         json.dump(doc_model(slug, v), f, ensure_ascii=False)
     try:
         r = subprocess.run(["node", os.path.join(OUT_DIR, "cv_docx.js"), f.name, out],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, timeout=60)
     except FileNotFoundError:
         print(f"    {slug}: bỏ qua DOCX (cần Node.js, rồi chạy npm install)")
+        return False
+    except subprocess.TimeoutExpired:
+        print(f"    {slug}: node treo quá 60 giây, đã tắt — bỏ qua DOCX")
         return False
     finally:
         os.unlink(f.name)
@@ -920,11 +923,17 @@ def main():
         html_path = os.path.join(OUT_DIR, slug + ".html")
         pdf_path = os.path.join(OUT_DIR, slug + ".pdf")
         io.open(html_path, "w", encoding="utf-8").write(build(slug, v))
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                        "--run-all-compositor-stages-before-draw", "--virtual-time-budget=4000",
-                        "--print-to-pdf=" + pdf_path,
-                        "file:///" + html_path.replace("\\", "/")],
-                       capture_output=True)
+        try:
+            subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+                            "--run-all-compositor-stages-before-draw", "--virtual-time-budget=4000",
+                            "--print-to-pdf=" + pdf_path,
+                            "file:///" + html_path.replace("\\", "/")],
+                           capture_output=True, timeout=120)
+        except subprocess.TimeoutExpired:
+            # Chrome headless thỉnh thoảng treo; không có timeout thì nó nằm đó mãi.
+            print(f"TREO {slug:34s} Chrome quá 120 giây, đã tắt — bỏ qua bản này")
+            ok = False
+            continue
         try:
             import fitz
             d = fitz.open(pdf_path)

@@ -18,10 +18,18 @@ def norm(s):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s)).strip()
 
 
+def run(cmd, timeout, what, **kw):
+    """Chạy lệnh ngoài có giới hạn thời gian — treo thì báo rõ thay vì đứng im mãi."""
+    try:
+        return subprocess.run(cmd, cwd=HERE, check=True, timeout=timeout, **kw)
+    except subprocess.TimeoutExpired:
+        sys.exit(f"{what} treo quá {timeout} giây, đã tắt. Dừng.")
+
+
 def build_once():
-    subprocess.run(["node", "gen_giaotrinh.js"], cwd=HERE, check=True)
-    subprocess.run([SOFFICE, "--headless", "--convert-to", "pdf", "--outdir", HERE,
-                    os.path.join(HERE, NAME + ".docx")], cwd=HERE, check=True, capture_output=True)
+    run(["node", "gen_giaotrinh.js"], 120, "node gen_giaotrinh.js")
+    run([SOFFICE, "--headless", "--convert-to", "pdf", "--outdir", HERE,
+         os.path.join(HERE, NAME + ".docx")], 180, "LibreOffice", capture_output=True)
 
 
 def read_pages():
