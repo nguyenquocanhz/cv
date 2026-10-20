@@ -179,7 +179,7 @@ EXP_EN_PLAIN = [
 EDU_EN_PLAIN = dict(title="HCMC College of Economics and Technology (HOTEC)",
                     org="— Information Technology (Software)", date="08/2023 – 03/2026",
                     sub="<b>Full-time</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; graduated with <b>Excellent</b> rank &nbsp;&middot;&nbsp; "
-                        "TOEIC 575 (07/2024)")
+                        "vocational IT certificate, <b>Very Good</b> grade &nbsp;&middot;&nbsp; TOEIC 575 (07/2024)")
 
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
@@ -679,7 +679,7 @@ VARIANTS = {
  # Mỗi ý đó có một dòng kỹ năng neo vào việc đã làm thật, không nhận giúp thứ gì
  # không có dấu vết trong hồ sơ.
  "CV-NguyenQuocAnh-AI-Automation": dict(
-   lang=L_VI, exp=EXP_VI, edu=EDU_VI,
+   lang=L_VI, exp=EXP_VI, edu=dict(EDU_VI, sub="Hệ <b>chính quy</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; Tốt nghiệp loại <b>Xuất sắc</b> &nbsp;&middot;&nbsp; Bằng nghề Tin học loại <b>Giỏi</b> &nbsp;&middot;&nbsp; TOEIC 575 (07/2024)"),
    order=["edu", "proj", "skills", "exp", "summary"],
    role="Thực tập sinh AI Engineer &middot; Antigravity &amp; Claude Code &middot; Python &middot; Automation &amp; API",
    summary=("Tôi vừa tốt nghiệp Cao đẳng Công nghệ thông tin loại <b>Xuất sắc</b> và đã có 3 năm làm sản phẩm chạy "
