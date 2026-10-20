@@ -138,6 +138,15 @@ tuyển dụng rồi tải CV lên để chấm mức khớp, soi các lỗi khi
 chấm chất lượng tin tuyển dụng, kèm mẫu CV chuẩn ATS và mẹo viết CV. CV không rời khỏi máy
 người dùng. Chi tiết xem `ats-scan/README.md`.
 
+## lab-mang — lab DHCP + VLAN chạy được
+
+Thư mục `lab-mang/` là một lab mạng dựng bằng Linux network namespace: một router,
+ba VLAN, DHCP server thật, client thật. Script tái hiện ba sự cố hay gặp nhất ở mạng
+công ty nhỏ — hết IP, trùng IP, DHCP lậu — rồi sửa từng cái, và kiểm chứng VLAN cô lập
+broadcast đến đâu. Chạy bằng `sudo ./lab.sh all`, không cần GNS3 hay thiết bị thật.
+Cấu hình Cisco IOS tương đương nằm ở `lab-mang/cisco-ios.md`. Chi tiết xem
+`lab-mang/README.md`.
+
 ## on-tap — giáo trình ôn tập Kỹ thuật viên máy tính
 
 Thư mục `on-tap/` chứa giáo trình PDF 56 trang để ôn phỏng vấn vị trí kỹ thuật viên phần cứng: cấu trúc máy tính, CPU & socket, RAM, ổ cứng, chuẩn kết nối, mạng cơ bản. Cách dựng lại xem `on-tap/README.md`.

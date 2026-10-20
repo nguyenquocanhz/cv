@@ -1,0 +1,160 @@
+# Ket qua chay mau: sudo ./lab.sh all
+# (sinh tu dong tu lab.sh, khong sua tay)
+
+
+== CA 1 - HET IP  (pool qua hep) ==
+  Dat pool VLAN 10 chi con 3 dia chi: 10.0.10.100 - 10.0.10.102
+  roi cho 4 may cung xin IP.
+  pc1   xin IP ...
+    -> nhan IP 10.0.10.100/24  gw=10.0.10.1  tu server 10.0.10.1
+  pc2   xin IP ...
+    -> nhan IP 10.0.10.101/24  gw=10.0.10.1  tu server 10.0.10.1
+  pc3   xin IP ...
+    -> nhan IP 10.0.10.102/24  gw=10.0.10.1  tu server 10.0.10.1
+  pc4   xin IP ...
+    -> KHONG xin duoc IP
+  [loi]  pc4 KHONG co IP - pool da can
+  [ok]   Tai hien thanh cong: may thu 4 khong xin duoc IP.
+
+== CA 1 - CACH SUA ==
+  Cach A: noi pool trong chinh subnet /24 dang co (re nhat, khong doi thiet ke)
+  pc4   xin IP ...
+    -> nhan IP 10.0.10.103/24  gw=10.0.10.1  tu server 10.0.10.1
+  [ok]   pc4 da co IP sau khi noi pool len 101 dia chi.
+  
+  Cach B: giam lease time (24h -> 2h) de thu hoi IP cua may da tat.
+           Trong lab nay lease dang la 2m; tren router that:
+           DHCP lease time 86400 -> 7200.
+  Cach C: doi mask /24 -> /23 (254 -> 510 host). Chi lam khi A va B khong du,
+           vi broadcast domain to gap doi.
+
+== CA 2 - TRUNG IP  (thiet bi tinh nam TRONG pool DHCP) ==
+  cam1 duoc set IP tinh 10.0.30.101 - nam TRONG pool DHCP.
+  De tai hien chac chan, thu hep pool con dung 1 dia chi: 10.0.30.101.
+  [ok]   cam1 dang giu 10.0.30.101 (tinh), MAC d2:57:73:c8:c3:8a
+  
+  Bay gio camera bi TAT (rut dien / cup dien).
+  [ok]   cam1 da tat.
+  
+  Mot may khac cam vao cung VLAN 30 va xin IP.
+  cam2  xin IP ...
+    -> nhan IP 10.0.30.101/24  gw=10.0.30.1  tu server 10.0.30.1
+  
+  Camera duoc cap dien lai.
+
+== CA 2 - KET QUA ==
+  cam1 (tinh)  : 10.0.30.101/24   MAC d2:57:73:c8:c3:8a
+  cam2 (DHCP)  : 10.0.30.101/24  MAC be:82:ec:30:66:f1
+  [loi]  TRUNG IP: hai thiet bi cung giu 10.0.30.101
+  
+  Vi sao router cap di dia chi dang co chu? Vi luc do camera DANG TAT.
+  dnsmasq ping thu dia chi truoc khi cap; khong ai tra loi nen no coi la trong.
+  Camera bat len lai thi da muon - hai thiet bi cung mot IP.
+  
+  Phat hien bang ARP - mot IP tra ve hai MAC khac nhau:
+    ARPING 10.0.30.101 from 10.0.30.1 r1-v30
+    Unicast reply from 10.0.30.101 [be:82:ec:30:66:f1] 0.009ms
+    Unicast reply from 10.0.30.101 [d2:57:73:c8:c3:8a] 0.038ms
+    Unicast reply from 10.0.30.101 [d2:57:73:c8:c3:8a] 0.018ms
+    Unicast reply from 10.0.30.101 [d2:57:73:c8:c3:8a] 0.019ms
+  
+  Tren may Windows lenh tuong duong la:  arp -a 10.0.30.101
+
+== CA 2 - CACH SUA ==
+  Cach dung: day dai tinh RA NGOAI pool DHCP.
+    pool  10.0.30.100 - 10.0.30.200   <- DHCP tu cap
+    tinh  10.0.30.201 - 10.0.30.254   <- camera, may in, server, AP
+  cam2  xin IP ...
+    -> nhan IP 10.0.30.101/24  gw=10.0.30.1  tu server 10.0.30.1
+  [ok]   cam1 tinh 10.0.30.201 (ngoai pool), cam2 lay DHCP - khong con dung nhau.
+  
+  Cach 2 (tot hon): DHCP reservation - gan cung IP theo MAC tren router.
+    dnsmasq : --dhcp-host=d2:57:73:c8:c3:8a,10.0.30.101
+    Cisco   : ip dhcp pool CAM / host 10.0.30.101 255.255.255.0 / client-identifier ...
+
+== CA 3 - DHCP LAU  (co nguoi cam them router vao cong LAN) ==
+  Router that cap dai 10.0.10.0/24 tu 10.0.10.1
+  
+  Gio cam them 1 con router gia re vao switch VLAN 10 (cam nham cong LAN),
+  no cung phat DHCP, dai 192.168.1.0/24.
+  [loi]  DHCP lau dang chay tai 192.168.1.1 tren VLAN 10
+
+== CA 3 - BAT GOI DE CO BANG CHUNG ==
+  Cho pc1 xin IP va bat goi DHCP cung luc.
+    18:06:05.466045 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 32:57:2a:52:d9:05, length 300
+    18:06:05.466460 IP 10.0.10.1.67 > 10.0.10.100.68: BOOTP/DHCP, Reply, length 300
+    18:06:05.514125 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 32:57:2a:52:d9:05, length 300
+    18:06:05.515697 IP 10.0.10.1.67 > 10.0.10.100.68: BOOTP/DHCP, Reply, length 300
+    18:06:08.472149 IP 192.168.1.1.67 > 192.168.1.145.68: BOOTP/DHCP, Reply, length 300
+    18:06:08.472396 IP 192.168.1.1.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 300
+    
+  
+  So DHCP server da tra loi: 2
+      10.0.10.1
+      192.168.1.1
+  [ok]   Mot cau hoi, HAI noi tra loi -> chac chan co DHCP lau. Day la bang chung.
+
+== CA 3 - HAU QUA: may an nham IP cua ai? ==
+  May lay IP cua thang tra loi TRUOC - day la mot cuoc dua, khong chac chan.
+  [loi]  pc1  192.168.1.145/24  <- dinh DHCP lau, gateway sai, khong ra duoc mang cong ty
+  [ok]   pc2  10.0.10.101/24
+  [ok]   pc3  10.0.10.102/24
+  [ok]   pc4  10.0.10.103/24
+
+== CA 3 - CACH PHAT HIEN TREN MAY THAT ==
+  Tren Windows:  ipconfig /all   -> doc dong "DHCP Server"
+  Chay o 3-4 cho khac nhau trong cong ty. Ra HAI dia chi khac nhau = co DHCP lau.
+  
+  Tren Linux:    journalctl -u NetworkManager | grep -i dhcp
+  Bat goi:       tcpdump -ni <card> 'udp port 67 or udp port 68'
+                 Thay hai dia chi nguon khac nhau o cac goi Reply = co lau.
+  
+  Trang thai hien tai cua 4 may:
+    pc1   192.168.1.145/24   gateway: 192.168.1.1
+    pc2   10.0.10.101/24     gateway: 10.0.10.1
+    pc3   10.0.10.102/24     gateway: 10.0.10.1
+    pc4   10.0.10.103/24     gateway: 10.0.10.1
+
+== CA 3 - CACH SUA ==
+  1. Rut con router lau ra, hoac bien no thanh AP thuan:
+     - tat DHCP server tren no
+     - dat IP tinh cung dai cong ty, ngoai pool DHCP
+     - cam day uplink vao cong LAN, KHONG cam vao cong WAN
+  2. Tren switch quan ly duoc, bat DHCP snooping de chan tu goc:
+     ip dhcp snooping
+     ip dhcp snooping vlan 10,20,30
+     interface Gi0/1          <- cong di len router that
+      ip dhcp snooping trust  <- chi cong nay duoc phep tra loi DHCP
+  
+  [ok]   Da go DHCP lau.
+      pc1 -> 10.0.10.145/24
+      pc2 -> 10.0.10.101/24
+      pc3 -> 10.0.10.102/24
+      pc4 -> 10.0.10.103/24
+  [ok]   Tat ca ve dung dai 10.0.10.0/24.
+
+== CA 4 - VLAN co lap broadcast den dau? ==
+  pc1 (VLAN 10 nhan vien): 10.0.10.145/24
+  kh1 (VLAN 20 khach)    : 10.0.20.112/24
+  
+  1) ARP broadcast co vuot VLAN khong?
+  [ok]   KHONG. kh1 o VLAN 20 khong nghe duoc 1 goi ARP nao cua VLAN 10.
+      Day chinh la tac dung chinh cua VLAN: cat broadcast domain.
+  
+  2) Hai VLAN co ping duoc nhau khong? (router dang bat ip_forward)
+  [chu y] CO. Khach ping thang vao may nhan vien duoc.
+      Chia VLAN thoi CHUA du - router van dinh tuyen giua cac VLAN.
+
+== CA 4 - CHAN KHACH SANG MANG NHAN VIEN ==
+  [ok]   Da them rule chan VLAN 20 -> VLAN 10 va VLAN 30.
+  [ok]   Khach khong con ping sang mang nhan vien.
+  
+  Tren router Cisco rule tuong duong:
+    ip access-list extended KHACH-RA-INTERNET
+     deny   ip 10.0.20.0 0.0.0.255 10.0.10.0 0.0.0.255
+     deny   ip 10.0.20.0 0.0.0.255 10.0.30.0 0.0.0.255
+     permit ip any any
+    interface GigabitEthernet0/0.20
+     ip access-group KHACH-RA-INTERNET in
+
+== XONG - don dep bang: sudo ./lab.sh down ==
