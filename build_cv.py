@@ -181,6 +181,19 @@ EDU_EN_PLAIN = dict(title="HCMC College of Economics and Technology (HOTEC)",
                     sub="<b>Full-time</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; graduated with <b>Excellent</b> rank &nbsp;&middot;&nbsp; "
                         "vocational IT certificate, <b>Very Good</b> grade &nbsp;&middot;&nbsp; TOEIC 575 (07/2024)")
 
+EXP_GV_VI = [
+    dict(title="Nhân viên hỗ trợ kỹ thuật", org="— Công ty Cổ phần Máy tính Z1",
+         date="09/2025 – 10/2025", bullets=[
+        "Hỗ trợ người dùng trong công ty xử lý sự cố máy tính, máy in và mạng — làm việc trực tiếp với người không chuyên kỹ thuật, nghe họ mô tả bằng lời thường rồi tìm ra nguyên nhân.",
+        "Vận hành hệ thống POS KiotViet; quản trị và tối ưu hiệu năng website công ty.",
+    ]),
+    dict(title="Lập trình viên tự do", org="— phát triển và vận hành sản phẩm cho khách hàng",
+         date="07/2023 – nay", bullets=[
+        f"Tự làm trọn vòng đời một nền tảng dịch vụ: thiết kế, lập trình, triển khai rồi duy trì. Hiện phục vụ <b>{USERS} khách hàng</b>.",
+        "Tiếp nhận lỗi khách báo, phân loại mức độ ưu tiên và xử lý dứt điểm — quen việc kiên nhẫn nghe hết vấn đề trước khi sửa.",
+    ]),
+]
+
 RAPPHIM_FULL_VI = [
     "Backend <b>Spring Boot 4.1 / Java 17 / Maven</b>: REST API phiên bản hoá (<code>/api/v1</code>) làm lớp trung gian, gộp dữ liệu từ hai nguồn bên thứ ba có schema JSON khác nhau về <b>một contract thống nhất</b>.",
     "Tối ưu hiệu năng bằng <b>Caffeine cache</b> giảm số lần gọi API ngoài; <b>Spring Actuator</b> cho health check; <b>Bean Validation</b> kiểm soát đầu vào; có unit test cho tầng web.",
@@ -353,6 +366,12 @@ PROJ = {
                         date="09/2026", bullets=[
     "<b>Thiết kế API contract trước khi code</b>: phiên bản hoá <code>/api/v1</code>, thống nhất envelope và mã lỗi — ba client (web, Android, iOS) dùng chung một contract; gộp hai nguồn dữ liệu khác schema về một mô hình.",
     "<b>Spring Boot 4.1 / Java 17</b>, cache in-memory, validation tại biên, <b>OpenAPI 3.1</b> tự sinh kèm Swagger UI; đóng gói <b>Docker</b>, CI <b>GitHub Actions</b>. &nbsp;github.com/nguyenquocanhz/RapPhimWareHouse",
+ ]),
+
+ 'atsscan_gv_vi': dict(title="ATS Scan", org="— công cụ kiểm tra CV miễn phí, mã nguồn mở",
+                       date="10/2026", bullets=[
+    "Ứng dụng web giúp người tìm việc tự kiểm tra CV: đọc file PDF / DOCX, so với tin tuyển dụng rồi chỉ ra chỗ nào máy lọc hồ sơ không đọc được.",
+    "Có <b>ba chế độ riêng</b> cho ứng viên, sinh viên và nhà tuyển dụng — cùng một kết quả nhưng giải thích theo ba cách, vì ba nhóm này cần nghe khác nhau.",
  ]),
 
  'atsscan_vi': dict(title="ATS Scan", org="— công cụ quét CV &amp; chấm tin tuyển dụng, mã nguồn mở",
@@ -722,6 +741,32 @@ VARIANTS = {
      ("Monitoring &amp; DevOps", "<b>pulse</b> — system monitoring with a status page and alerts; client servers at <b>99%</b> uptime &middot; <b>Docker</b>, <b>Git / GitHub</b>, Git Flow, GitLab CI/CD, Linux"),
      ("Writing &amp; teamwork", "Wrote a <b>56-page technical handbook</b> (IEEE Std 1063-2001) &middot; <b>team leader for 5 people</b> &middot; proactive, willing to learn, good at problem solving"),
    ]),
+ # --------------------------------- Giáo viên lập trình thiếu nhi (VI)
+ # Trung tâm dạy code cho trẻ cần hai thứ: biết lập trình, và giải thích được cho
+ # người chưa biết gì. Thứ hai mới là thứ hiếm — giáo trình 56 trang và việc review
+ # code cho nhóm là bằng chứng, nên đứng trên cả danh sách ngôn ngữ.
+ # Bỏ sạch DevOps, Docker, hạ tầng, RDAP: trung tâm không quan tâm.
+ "CV-NguyenQuocAnh-GiaoVienLapTrinh": dict(
+   lang=dict(L_VI, exp="Kinh nghiệm làm việc", skills="Năng lực giảng dạy &amp; chuyên môn",
+             extra="Thông tin thêm"),
+   exp=EXP_GV_VI,
+   edu=dict(EDU_VI, sub="Hệ <b>chính quy</b> &nbsp;&middot;&nbsp; GPA <b>3.65 / 4.0</b> &nbsp;&middot;&nbsp; "
+                        "Tốt nghiệp loại <b>Xuất sắc</b> &nbsp;&middot;&nbsp; Bằng nghề Tin học loại <b>Giỏi</b>"),
+   order=["edu", "skills", "exp", "proj", "extra"],
+   role="Giáo viên lập trình thiếu nhi &middot; Python &middot; Java &middot; HTML / CSS / JavaScript",
+   projects=['atsscan_gv_vi', 'bootreport_vi', 'qrwallet_vi'],
+   skills=[
+     ("Truyền đạt", "Tự viết một <b>giáo trình kỹ thuật 56 trang</b> theo chuẩn <b>IEEE Std 1063-2001</b> cho người mới vào nghề: chia chương, bài tập phân cấp độ khó, ví dụ chạy được"),
+     ("Hướng dẫn người khác", "<b>Trưởng nhóm 5 người</b> ở hai dự án — chia việc, review code và sửa bài cho từng bạn &middot; hỗ trợ người dùng không rành kỹ thuật tại Công ty Máy tính Z1"),
+     ("Ngôn ngữ dạy được", "<b>Python</b> — viết công cụ tự động hoá đang chạy thật &middot; <b>Java</b> — ứng dụng Android hoàn chỉnh &middot; <b>HTML / CSS / JavaScript</b> — nhiều website &middot; <b>Scratch</b> " + FILL.format("đã dùng chưa?")),
+     ("Giải thích cho người ngoài ngành", "Công cụ BootReport xuất báo cáo <b>song ngữ Việt – Anh</b> viết cho người dùng thường đọc hiểu, không dùng thuật ngữ &middot; công cụ quét CV có ba chế độ riêng cho ứng viên, sinh viên và nhà tuyển dụng"),
+     ("Công cụ", "Google Drive, Google Sheets, Microsoft Office, Canva &middot; Git / GitHub để chia sẻ bài mẫu cho học viên"),
+   ],
+   extra=[
+     "Nhận dạy <b>ca tối các ngày trong tuần</b> và <b>cuối tuần</b> &nbsp;" + FILL.format("xác nhận lịch rảnh của anh"),
+     "Ở Bình Tân, TP. Hồ Chí Minh — đi dạy lớp offline trong thành phố được.",
+   ]),
+
 }
 
 # Cùng nội dung với hai bản trên, chỉ khác dòng liên hệ — sửa bản gốc thì bản
